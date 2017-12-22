@@ -107,7 +107,7 @@ public:
             }
             else if (val->IsInt())
             {
-                if (paramType != QMetaType::Int)
+                if (paramType != QMetaType::Int && paramType != QMetaType::QReal)
                 {
                     exception = QString("wrong param type at position %1 should be %2").arg(index).arg(getTypeName(paramType)).toUtf8().constData();
                     retval = CefV8Value::CreateBool(false);

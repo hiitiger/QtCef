@@ -64,6 +64,10 @@ CefRefPtr<CefListValue> JsFunctionWrapper::convertToCefList(QVariantList argumen
             jsonString.prepend("O_");
             argList->SetString(i, jsonString.toStdWString());
         }
+        else
+        {
+            assert(0);
+        }
     }
 
     return argList;

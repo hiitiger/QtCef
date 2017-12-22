@@ -104,7 +104,29 @@ void QCefApiAdapter::onJsInvokeMsg(const QString& object, const QString& method,
 
             if (methodName == method)
             {
-                metaCallSEH_((void*)&MetaCallArg { m_apiObject, metaMethod, args });
+                auto paramTypes = metaMethod.parameterTypes();
+                QVariantList args2 = args;
+                for (int index = 0; index != args2.size(); ++index)
+                {
+                    int paramType = QMetaType::type(paramTypes[index].constData());
+
+                    if (args2[index].userType() == QMetaType::Int)
+                    {
+                        if (paramType == QMetaType::QReal)
+                        {
+                            args2[index] = QVariant::fromValue((qreal)args2[index].toInt());
+                        }
+                    }
+                    else if (args2[index].userType() == QMetaType::QReal)
+                    {
+                        if (paramType == QMetaType::Int)
+                        {
+                            args2[index] = QVariant::fromValue((int)args2[index].toReal());
+                        }
+                    }
+                }
+
+                metaCallSEH_((void*)&MetaCallArg { m_apiObject, metaMethod, args2 });
                 break;
             }
         }
