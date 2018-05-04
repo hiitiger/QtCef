@@ -55,6 +55,9 @@ signals:
     void titleChanged(const QString& title);
     void enabledOperationsChanged();
 
+	void jsInvokeMsg(const QString& object, const QString& method, const QVariantList& args);
+
+
 public slots:
     void refresh();
     void goBack();

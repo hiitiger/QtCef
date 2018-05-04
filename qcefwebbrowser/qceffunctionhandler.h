@@ -240,34 +240,61 @@ public:
         return target;
     }
 
+	QVariant converCefObjectToVariant(CefRefPtr<CefV8Value> arg)
+	{
+		if (arg->IsString())
+		{
+			return QVariant::fromValue(QString::fromStdWString(arg->GetStringValue().ToWString()));
+		}
+		else if (arg->IsNull())
+		{
+			return QVariant();
+		}
+		else if (arg->IsDouble())
+		{
+			return QVariant(arg->GetDoubleValue());
+		}
+		else if (arg->IsBool())
+		{
+			return QVariant(arg->GetBoolValue());
+		}
+		else if (arg->IsArray())
+		{
+			QVariantList result;
+			const auto count = arg->GetArrayLength();
+			for (auto i = 0; i < count; i++)
+			{
+				result.append(converCefObjectToVariant(arg->GetValue(i)));
+			}
+			return result;
+		}
+		else
+		{
+			QVariantMap result;
+			std::vector<CefString> keys;
+			arg->GetKeys(keys);
+			for (int i = 0; i != keys.size(); ++i)
+			{
+				CefString key = keys[i];
+
+				CefRefPtr<CefV8Value> val = arg->GetValue(key);
+				if (!val->IsFunction())
+				{
+					result.insert(QString::fromStdWString(key.ToWString()), converCefObjectToVariant(val));
+				}
+			}
+
+			return result;
+		}
+		
+	}
+
+
     QString converCefObjectToJsonString(CefRefPtr<CefV8Value> arg)
     {
-        QString json;
-        json.append ('{');
-        std::vector<CefString> keys;
-        arg->GetKeys(keys);
+		QString json = QString::fromUtf8(QJsonDocument::fromVariant(converCefObjectToVariant(arg)).toJson());
+		std::cout << json.toStdString() << std::endl;
 
-        for (int i = 0; i != keys.size(); ++i)
-        {
-            CefString key = keys[i];
-
-            CefRefPtr<CefV8Value> val = arg->GetValue(key);
-            if (!val->IsFunction())
-            {
-                json.append("\"");
-                json.append(key.ToString().c_str());
-                json.append("\":");
-                json.append(converCefObjectToJsonString(val));
-                json.append(",");
-            }
-        }
-
-        if (keys.size() > 0)
-        {
-            json.remove(json.size() - 1, 1);
-        }
-        
-        json.append('}');
         return json;
     }
 

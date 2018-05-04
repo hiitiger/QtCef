@@ -84,7 +84,7 @@ public:
         return value;
     }
 
-    static CefRefPtr<CefV8Value> converToCefObject(QJsonValue& jsonValue)
+    static CefRefPtr<CefV8Value> converToCefObject(const QJsonValue& jsonValue)
     {
         CefRefPtr<CefV8Value> value;
 
@@ -116,17 +116,26 @@ public:
             QJsonObject object = jsonValue.toObject();
             value = converToCefObject(object);
         }
+		else if (jsonValue.isNull())
+		{
+			value = CefV8Value::CreateNull();
+		}
+		else if (jsonValue.isUndefined())
+		{
+			value = CefV8Value::CreateUndefined();
+		}
 
         return value;
     }
 
-    static CefRefPtr<CefV8Value> converToCefObject(QJsonObject& jsonObject)
+    static CefRefPtr<CefV8Value> converToCefObject(const QJsonObject& jsonObject)
     {
         CefRefPtr<CefV8Value> value = CefV8Value::CreateObject(nullptr);
 
         QStringList keys = jsonObject.keys();
         Q_FOREACH(QString key, keys)
         {
+			std::cout << key.toStdString() << std::endl;
             CefRefPtr<CefV8Value> child = converToCefObject(jsonObject.value(key));
             value->SetValue(key.toStdWString(), child, V8_PROPERTY_ATTRIBUTE_NONE);
         }

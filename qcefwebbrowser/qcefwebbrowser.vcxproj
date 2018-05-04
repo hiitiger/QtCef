@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{15A11834-242A-3334-8534-7DF20C8FB100}</ProjectGuid>
+    <ProjectGuid>{50560233-3707-38DE-A1FA-D70EBD6F24FD}</ProjectGuid>
     <RootNamespace>qcefwebbrowser</RootNamespace>
     <Keyword>Qt4VSv1.0</Keyword>
   </PropertyGroup>
@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="ceffunc.cpp" />
     <ClCompile Include="client_app.cpp" />
+    <ClCompile Include="demoapi.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="qcefeventfunctionhandler.cpp" />
     <ClCompile Include="qceffunctionhandler.cpp" />
@@ -161,6 +162,16 @@
   <ItemGroup>
     <ClInclude Include="ceffunc.h" />
     <ClInclude Include="client_app.h" />
+    <CustomBuild Include="demoapi.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">E:\tigerworks\qt4.8.6\bin\moc.exe;demoapi.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">E:\tigerworks\qt4.8.6\bin\moc.exe  -DUNICODE -DWIN32 -D_WIN32_WINNT=0x0601 -DQT_DLL -DQT_GUI_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I&quot;e:\tigerworks\qt4.8.6\include\QtCore&quot; -I&quot;e:\tigerworks\qt4.8.6\include\QtGui&quot; -I&quot;e:\tigerworks\qt4.8.6\include&quot; -I&quot;.&quot; -I&quot;..\common\include&quot; -I&quot;..\common\src\cef&quot; -I&quot;e:\tigerworks\qt4.8.6\include\ActiveQt&quot; -I&quot;debug&quot; -Ie:\tigerworks\qt4.8.6\mkspecs\win32-msvc2015 -D_MSC_VER=1900 -DWIN32 demoapi.h -o debug\moc_demoapi.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC demoapi.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_demoapi.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">E:\tigerworks\qt4.8.6\bin\moc.exe;demoapi.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">E:\tigerworks\qt4.8.6\bin\moc.exe  -DUNICODE -DWIN32 -D_WIN32_WINNT=0x0601 -DQT_DLL -DQT_NO_DEBUG -DQT_GUI_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I&quot;e:\tigerworks\qt4.8.6\include\QtCore&quot; -I&quot;e:\tigerworks\qt4.8.6\include\QtGui&quot; -I&quot;e:\tigerworks\qt4.8.6\include&quot; -I&quot;.&quot; -I&quot;..\common\include&quot; -I&quot;..\common\src\cef&quot; -I&quot;e:\tigerworks\qt4.8.6\include\ActiveQt&quot; -I&quot;release&quot; -Ie:\tigerworks\qt4.8.6\mkspecs\win32-msvc2015 -D_MSC_VER=1900 -DWIN32 demoapi.h -o release\moc_demoapi.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC demoapi.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_demoapi.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
     <ClInclude Include="qcefeventfunctionhandler.h" />
     <ClInclude Include="qceffunctionhandler.h" />
     <ClInclude Include="qcefrenderprocesshandler.h" />
@@ -174,6 +185,12 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="debug\moc_demoapi.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_demoapi.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="stable.h.cpp">
       <ForcedIncludeFiles Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">$(NOINHERIT)</ForcedIncludeFiles>
       <PrecompiledHeaderFile Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">stable.h</PrecompiledHeaderFile>

@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{A02D0594-580B-37C9-990A-8482B013674D}</ProjectGuid>
+    <ProjectGuid>{3D4D0B1F-F38B-323D-A79B-B03D51CD40ED}</ProjectGuid>
     <RootNamespace>qcefclient</RootNamespace>
     <Keyword>Qt4VSv1.0</Keyword>
   </PropertyGroup>
@@ -146,7 +146,7 @@
     <ClCompile Include="qtcef\cefeventtranslator.cpp" />
     <ClCompile Include="qtcef\client_app.cpp" />
     <ClCompile Include="qtcef\client_handler.cpp" />
-    <ClCompile Include="qtcef\etensionhandler.cpp" />
+    <ClCompile Include="qtcef\extensionhandler.cpp" />
     <ClCompile Include="qthack\genericmetacall.cpp" />
     <ClCompile Include="qthack\genericsignalmap.cpp" />
     <ClCompile Include="qtcef\jsfunctionwrapper.cpp" />

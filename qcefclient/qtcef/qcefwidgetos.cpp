@@ -537,6 +537,7 @@ void QCefOSWidget::onLoadingChanged(bool loading)
 void QCefOSWidget::onJsInvoke(const QString& object, const QString& method, const QVariantList& argList)
 {
     (void)object; (void)method; (void)argList;
+	emit jsInvokeMsg(object, method, argList);
 }
 
 void QCefOSWidget::showDevTool()

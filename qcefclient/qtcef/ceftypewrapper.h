@@ -50,7 +50,8 @@ inline QVariant converStringArg(CefRefPtr<QCefClientHandler> client, QString& ar
     else if (arg.startsWith("O_"))
     {
         //json
-        result = arg;
+		;
+        result = QVariant::fromValue(QJsonDocument::fromJson(arg.mid(2).toUtf8()));
     }
     else
     {

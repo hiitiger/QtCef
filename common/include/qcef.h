@@ -8,3 +8,5 @@
 #include "../../qcefclient/qtcef/qcefpage.h"
 #include "../../qcefclient/qtcef/qcefwidgetos.h"
 #include "../../qcefclient/qtcef/client_app.h"
+#include "../../qcefclient/qtapiadapter/qcefapiobject.h"
+#include "../../qcefclient/qtapiadapter/qcefapiadapter.h"

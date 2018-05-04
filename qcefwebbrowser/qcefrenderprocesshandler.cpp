@@ -2,6 +2,7 @@
 #include "qceffunctionhandler.h"
 #include "qcefrenderprocesshandler.h"
 #include "ceffunc.h"
+#include "demoapi.h"
 
 MyV8Accessor::MyV8Accessor()
 {
@@ -377,6 +378,8 @@ void QCefRenderProcessHandler::OnContextCreated(CefRefPtr<CefBrowser> browser, C
 
     //inject api
     {
+		DemoApi api;
+		injectApi(context, "qcef.demoapi", &api);
 
     }
 }
