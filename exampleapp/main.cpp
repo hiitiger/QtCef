@@ -10,14 +10,17 @@ int main(int argc, char** argv )
     QCefClient cefClient;
     cefClient.initCefClient();
 
+    DemoApi* api = new DemoApi();
+    cefClient.regTopName("qcef");
+    cefClient.regApi(api, "qcef", "demoapi");
+
     QCefOSWidget w;
 
     w.show();
-    w.setUrl("https://www.duckduckgo.com");
+    w.setUrl("http://127.0.0.1:5000");
 
-	DemoApi* api = new DemoApi(&w);
-	QCefApiAdapter * adapter = new QCefApiAdapter(&w, &w);
-	adapter->initApi(api, "qcef", "demoapi");
+    QCefApiAdapter * adapter = new QCefApiAdapter(&w, &w);
+    adapter->initApi(api, "qcef", "demoapi");
 
     app.exec();
     cefClient.shutDown();
