@@ -40,7 +40,3 @@ With Qt's MOC based reflection, we can utilize it to inject C++ api into Cef web
      myapp.app.someEvent.addListener( data => console.log(data));
 ```
 
-## Build
-1. Download libcef and build
-2. Build qjson-backport
-3. qmake -tp vc -r
