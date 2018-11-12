@@ -1,13 +1,25 @@
 # QtCef
 Integrate CEF and Qt,  inject C++ API to CEF web page by utilizing reflection system based on Qt's MOC.
 
+
+## Note
+1. this is for Qt5, checkout qt4archive branch for Qt4
+2. need VS2015 or later
+
+ ## Build
+1. download CEF 3.3538 to deps direcotry and unzip to dir cef3538
+2. build cef libcef_dll_wrapper with VS2015
+3. copy cef.lib and libcef_dll_wrapper.lib to common/lib/debug or common/lib/release, copy cef release dlls and resources to bin/debug or bin/release
+4. generator VS2015 solution with qmake -tp vc -r
+5. build all 
+
 ## Usage
-This project is built for Qt4, with very little change it can be use with Qt5, but you probably should use QWebEngine in Qt5.
 
 With Qt's MOC based reflection, we can utilize it to inject C++ api into Cef web page without manually add every signle method and event for every single api.
 
 ```c++
     //main process
+    QCefOSWidget* webWidget = new QCefOSWidget();
     MyAppApi* api = new MyAppApi(parent);
     QCefApiAdapter* adapter = new QCefApiAdapter(webWidget, parent);
     adpater->initApi(api, "myapp", "app");
