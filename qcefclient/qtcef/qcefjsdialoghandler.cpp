@@ -13,9 +13,9 @@ QCefJSDialogHandler::~QCefJSDialogHandler()
 
 }
 
-bool QCefJSDialogHandler::OnJSDialog(CefRefPtr<CefBrowser> browser, const CefString& origin_url, const CefString& accept_lang, JSDialogType dialog_type, const CefString& message_text, const CefString& default_prompt_text, CefRefPtr<CefJSDialogCallback> callback, bool& suppress_message)
+bool QCefJSDialogHandler::OnJSDialog(CefRefPtr<CefBrowser> browser, const CefString& origin_url, JSDialogType dialog_type, const CefString& message_text, const CefString& default_prompt_text, CefRefPtr<CefJSDialogCallback> callback, bool& suppress_message)
 {
-    (void)origin_url;(void)accept_lang; (void)suppress_message;
+    (void)origin_url; (void)suppress_message;
 
     QString text = QString::fromStdWString(message_text.ToWString());
     QString promptText = QString::fromStdWString(default_prompt_text.ToWString());
@@ -27,6 +27,7 @@ bool QCefJSDialogHandler::OnJSDialog(CefRefPtr<CefBrowser> browser, const CefStr
 
     return true;
 }
+
 
 bool QCefJSDialogHandler::OnBeforeUnloadDialog(CefRefPtr<CefBrowser> browser, const CefString& message_text, bool is_reload, CefRefPtr<CefJSDialogCallback> callback)
 {

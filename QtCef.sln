@@ -1,35 +1,39 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qcefclient", "G:/coding/QtCef/qcefclient\qcefclient.vcxproj", "{3D4D0B1F-F38B-323D-A79B-B03D51CD40ED}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qcefclient", "qcefclient\qcefclient.vcxproj", "{39F2CE75-D637-3F77-9167-B6D0C18C3172}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qcefwebbrowser", "G:/coding/QtCef/qcefwebbrowser\qcefwebbrowser.vcxproj", "{50560233-3707-38DE-A1FA-D70EBD6F24FD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qcefwebbrowser", "qcefwebbrowser\qcefwebbrowser.vcxproj", "{9E484091-905C-39AB-A8B7-BA168E71ECFB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "exampleapp", "G:/coding/QtCef/exampleapp\exampleapp.vcxproj", "{38F082E2-2029-375E-86C0-A3EB74B3897A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "exampleapp", "exampleapp\exampleapp.vcxproj", "{2F744447-0A29-3DF6-92A8-5EC6FC11920A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{39F2CE75-D637-3F77-9167-B6D0C18C3172} = {39F2CE75-D637-3F77-9167-B6D0C18C3172}
+	EndProjectSection
 EndProject
 Global
-	GlobalSection(SolutionConfiguration) = preSolution
-		ConfigName.0 = Debug|Win32
-		ConfigName.1 = Release|Win32
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
 	EndGlobalSection
-	GlobalSection(ProjectDependencies) = postSolution
-		{38F082E2-2029-375E-86C0-A3EB74B3897A}.0 = {3D4D0B1F-F38B-323D-A79B-B03D51CD40ED}
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{39F2CE75-D637-3F77-9167-B6D0C18C3172}.Debug|Win32.ActiveCfg = Debug|Win32
+		{39F2CE75-D637-3F77-9167-B6D0C18C3172}.Debug|Win32.Build.0 = Debug|Win32
+		{39F2CE75-D637-3F77-9167-B6D0C18C3172}.Release|Win32.ActiveCfg = Release|Win32
+		{39F2CE75-D637-3F77-9167-B6D0C18C3172}.Release|Win32.Build.0 = Release|Win32
+		{9E484091-905C-39AB-A8B7-BA168E71ECFB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9E484091-905C-39AB-A8B7-BA168E71ECFB}.Debug|Win32.Build.0 = Debug|Win32
+		{9E484091-905C-39AB-A8B7-BA168E71ECFB}.Release|Win32.ActiveCfg = Release|Win32
+		{9E484091-905C-39AB-A8B7-BA168E71ECFB}.Release|Win32.Build.0 = Release|Win32
+		{2F744447-0A29-3DF6-92A8-5EC6FC11920A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2F744447-0A29-3DF6-92A8-5EC6FC11920A}.Debug|Win32.Build.0 = Debug|Win32
+		{2F744447-0A29-3DF6-92A8-5EC6FC11920A}.Release|Win32.ActiveCfg = Release|Win32
+		{2F744447-0A29-3DF6-92A8-5EC6FC11920A}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
-	GlobalSection(ProjectConfiguration) = postSolution
-		{3D4D0B1F-F38B-323D-A79B-B03D51CD40ED}.Debug|Win32.ActiveCfg = Debug|Win32
-		{3D4D0B1F-F38B-323D-A79B-B03D51CD40ED}.Debug|Win32.Build.0 = Debug|Win32
-		{3D4D0B1F-F38B-323D-A79B-B03D51CD40ED}.Release|Win32.ActiveCfg = Release|Win32
-		{3D4D0B1F-F38B-323D-A79B-B03D51CD40ED}.Release|Win32.Build.0 = Release|Win32
-		{50560233-3707-38DE-A1FA-D70EBD6F24FD}.Debug|Win32.ActiveCfg = Debug|Win32
-		{50560233-3707-38DE-A1FA-D70EBD6F24FD}.Debug|Win32.Build.0 = Debug|Win32
-		{50560233-3707-38DE-A1FA-D70EBD6F24FD}.Release|Win32.ActiveCfg = Release|Win32
-		{50560233-3707-38DE-A1FA-D70EBD6F24FD}.Release|Win32.Build.0 = Release|Win32
-		{38F082E2-2029-375E-86C0-A3EB74B3897A}.Debug|Win32.ActiveCfg = Debug|Win32
-		{38F082E2-2029-375E-86C0-A3EB74B3897A}.Debug|Win32.Build.0 = Debug|Win32
-		{38F082E2-2029-375E-86C0-A3EB74B3897A}.Release|Win32.ActiveCfg = Release|Win32
-		{38F082E2-2029-375E-86C0-A3EB74B3897A}.Release|Win32.Build.0 = Release|Win32
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-	EndGlobalSection
-	GlobalSection(ExtensibilityAddIns) = postSolution
+		SolutionGuid = {0951B5DA-FFD2-4436-9F4B-1CE9A087CE9D}
 	EndGlobalSection
 EndGlobal

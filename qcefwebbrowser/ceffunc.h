@@ -130,7 +130,7 @@ public:
 
     static CefRefPtr<CefV8Value> converToCefObject(const QJsonObject& jsonObject)
     {
-        CefRefPtr<CefV8Value> value = CefV8Value::CreateObject(nullptr);
+        CefRefPtr<CefV8Value> value = CefV8Value::CreateObject(nullptr, nullptr);
 
         QStringList keys = jsonObject.keys();
         Q_FOREACH(QString key, keys)

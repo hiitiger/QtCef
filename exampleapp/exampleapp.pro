@@ -2,14 +2,18 @@ TEMPLATE = app
 
 QT += core
 QT += gui
+QT += widgets
 
 include(../common/config.pri)
 
 PRECOMPILED_HEADER = stable.h
 INCLUDEPATH +=  ../common/src/cef
 LIBS += qcefclient.lib
-LIBS += qjson-backport.lib
 
-HEADERS += $$files(./*.h)
-SOURCES += $$files(./*.cpp)
+HEADERS += $$files(./demoapi.h)
+SOURCES += $$files(./demoapi.cpp)
+
+
+SOURCES += $$files(./main.cpp)
+
 

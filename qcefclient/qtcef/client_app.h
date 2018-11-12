@@ -13,7 +13,7 @@ public:
         const CefString& process_type,
         CefRefPtr<CefCommandLine> command_line) OVERRIDE;
 
-    virtual void OnRegisterCustomSchemes(CefRefPtr<CefSchemeRegistrar> registrar);
+    virtual void OnRegisterCustomSchemes(CefRawPtr<CefSchemeRegistrar> registrar);
 
     virtual void OnContextInitialized() OVERRIDE;
 

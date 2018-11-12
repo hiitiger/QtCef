@@ -246,7 +246,7 @@ void QCefClientHandler::OnLoadError(CefRefPtr<CefBrowser> browser, CefRefPtr<Cef
     //frame->LoadString()
 }
 
-void QCefClientHandler::OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame)
+void QCefClientHandler::OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, TransitionType transition_type)
 {
     if (browser->IsSame(browser_) && frame->IsMain())
     {

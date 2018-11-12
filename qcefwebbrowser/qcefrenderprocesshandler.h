@@ -39,7 +39,7 @@ private:
     QMap<QString, CefRefPtr<CefV8Value>> m_values;
 };
 
-class MyV8AccessorUserData : public CefBase
+class MyV8AccessorUserData : public CefBaseRefCounted
 {
 public:
     MyV8AccessorUserData(CefRefPtr<MyV8Accessor> accessor);

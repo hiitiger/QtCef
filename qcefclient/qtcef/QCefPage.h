@@ -6,7 +6,7 @@
 */
 class QCefOSWidget;
 
-class Q_DLL_QCEFCLIENT_API QCefPage : public QObject, public CefBase
+class Q_DLL_QCEFCLIENT_API QCefPage : public QObject, public CefBaseRefCounted
 {
     Q_OBJECT;
 public:

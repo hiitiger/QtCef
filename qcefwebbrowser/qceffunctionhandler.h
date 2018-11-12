@@ -11,6 +11,7 @@ public:
 };
 
 Q_DECLARE_METATYPE(JsFunctionWrapper)
+Q_DECLARE_METATYPE(QJsonDocument)
 
 inline void setupTypeNames()
 {

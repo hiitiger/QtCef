@@ -92,7 +92,7 @@ protected:
 
     virtual void paintEvent(QPaintEvent *);
 
-    virtual bool winEvent(MSG * message, long * result);
+    virtual bool nativeEvent(const QByteArray& type, void* message, long* result);
 
 protected slots:
     virtual void onBrowserCreate();

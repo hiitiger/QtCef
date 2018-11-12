@@ -99,7 +99,7 @@ void QCefApiAdapter::onJsInvokeMsg(const QString& object, const QString& method,
         if (metaMethod.methodType() == QMetaMethod::Method 
             || metaMethod.methodType() == QMetaMethod::Slot)
         {
-            QString methodName = QLatin1String(metaMethod.signature());
+            QString methodName = QLatin1String(metaMethod.methodSignature());
             methodName = methodName.left(methodName.indexOf("("));
 
             if (methodName == method)
@@ -142,7 +142,7 @@ void QCefApiAdapter::onGenericSignal(QObject* sender, QMetaMethod signal, QVaria
 {
     (void)sender;
 
-    QString methodName = QLatin1String(signal.signature());
+    QString methodName = QLatin1String(signal.methodSignature());
 
     methodName = methodName.left(methodName.indexOf("("));
 
@@ -158,7 +158,7 @@ void QCefApiAdapter::parseSignal()
         QMetaMethod method = metaObject->method(i);
         if (method.methodType() == QMetaMethod::Signal)
         {
-            QString signature = QLatin1String(method.signature());
+            QString signature = QLatin1String(method.methodSignature());
             QString eventName = signature.left(signature.indexOf("("));
             if (eventName == "destroyed")
             {

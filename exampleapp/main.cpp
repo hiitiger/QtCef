@@ -11,19 +11,26 @@ int main(int argc, char** argv )
     cefClient.initCefClient();
 
     DemoApi* api = new DemoApi();
-    cefClient.regTopName("qcef");
-    cefClient.regApi(api, "qcef", "demoapi");
 
-    QCefOSWidget w;
+    QCefOSWidget* w = new QCefOSWidget();
 
-    w.show();
-    w.setUrl("http://127.0.0.1:5000");
+    w->show();
+    w->setUrl("https://baidu.com");
 
-    QCefApiAdapter * adapter = new QCefApiAdapter(&w, &w);
+    QCefApiAdapter * adapter = new QCefApiAdapter(w, w);
     adapter->initApi(api, "qcef", "demoapi");
 
+    app.setQuitOnLastWindowClosed(false);
+
+    w->setAttribute(Qt::WA_DeleteOnClose, true);
+
+    QObject::connect(w, &QObject::destroyed, [&]() {
+        cefClient.shutDown();
+
+        app.quit();
+    });
+
     app.exec();
-    cefClient.shutDown();
 
     return 0;
 }

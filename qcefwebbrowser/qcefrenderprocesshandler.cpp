@@ -245,7 +245,7 @@ void QCefRenderProcessHandler::injectMethod(CefRefPtr<CefV8Context> context, QSt
         QMetaMethod metaMethod = metaObject->method(i);
         if (metaMethod.methodType() == QMetaMethod::Method)
         {
-            QString methodName = QLatin1String(metaMethod.signature());
+            QString methodName = QLatin1String(metaMethod.methodSignature());
             methodName = methodName.left(methodName.indexOf("("));
 
             CefRefPtr<QCefFunctionHandler> handler = new QCefFunctionHandler(this, context->GetFrame());
@@ -268,7 +268,7 @@ void QCefRenderProcessHandler::injectEvent(CefRefPtr<CefV8Context> context, QStr
         QMetaMethod method = metaObject->method(i);
         if (method.methodType() == QMetaMethod::Signal)
         {
-            QString eventName = QLatin1String(method.signature());
+            QString eventName = QLatin1String(method.methodSignature());
             eventName = eventName.left(eventName.indexOf("("));
             if (eventName == "destroyed")
             {
@@ -322,7 +322,7 @@ CefRefPtr<CefV8Value> QCefRenderProcessHandler::getOrCreateObject(CefRefPtr<CefV
         if (target == nullptr || target->IsUndefined())
         {
             CefRefPtr<MyV8Accessor> accessor = new MyV8Accessor();
-            target = CefV8Value::CreateObject(accessor);
+            target = CefV8Value::CreateObject(accessor, nullptr);
             target->SetUserData(new MyV8AccessorUserData(accessor));
 
             if (parentObject == global)

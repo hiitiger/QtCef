@@ -1,0 +1,16 @@
+[1112/173109.882:ERROR:icu_util.cc(172)] Invalid file descriptor to ICU data received.
+[1112/173323.389:FATAL:libcef_dll_wrapper.cc(244)] Check failed: base::AtomicRefCountIsZero(&CefBrowserCToCpp::DebugObjCt). 
+
+[1112/174021.847:FATAL:libcef_dll_wrapper.cc(244)] Check failed: base::AtomicRefCountIsZero(&CefBrowserCToCpp::DebugObjCt). 
+
+[1112/174329.915:FATAL:libcef_dll_wrapper.cc(244)] Check failed: base::AtomicRefCountIsZero(&CefBrowserCToCpp::DebugObjCt). 
+
+[1112/174334.951:ERROR:cache_util_win.cc(19)] Unable to move the cache: 5
+[1112/174334.951:ERROR:cache_util.cc(140)] Unable to move cache folder C:/Users/Hiitiger/AppData/Local/exampleapp\qcefcache\Cache to C:/Users/Hiitiger/AppData/Local/exampleapp\qcefcache\old_Cache_000
+[1112/174334.951:ERROR:disk_cache.cc(168)] Unable to create cache
+[1112/174358.360:FATAL:libcef_dll_wrapper.cc(244)] Check failed: base::AtomicRefCountIsZero(&CefBrowserCToCpp::DebugObjCt). 
+
+[1112/174752.583:FATAL:libcef_dll_wrapper.cc(244)] Check failed: base::AtomicRefCountIsZero(&CefBrowserCToCpp::DebugObjCt). 
+
+[1112/174845.815:FATAL:libcef_dll_wrapper.cc(244)] Check failed: base::AtomicRefCountIsZero(&CefBrowserCToCpp::DebugObjCt). 
+

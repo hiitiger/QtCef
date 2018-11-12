@@ -360,8 +360,14 @@ void QCefOSWidget::paintEvent(QPaintEvent *)
     }
 }
 
-bool QCefOSWidget::winEvent(MSG * message, long * result)
+bool QCefOSWidget::nativeEvent(const QByteArray& type, void* m, long* result)
 {
+    if (type != "windows_generic_MSG")
+    {
+        return false;
+    }
+
+    MSG* message = (MSG*)m;
     switch (message->message)
     {
     case WM_CLOSE:
@@ -425,9 +431,9 @@ bool QCefOSWidget::createBrowser()
     }
 
     CefWindowInfo info;
-    info.SetAsWindowless(this->winId(), true);
+    info.SetAsWindowless((HWND)this->winId());
 
-    m_osrHandler = new  QCefOSRenderHandler(this->winId());
+    m_osrHandler = new  QCefOSRenderHandler((HWND)this->winId());
     connect(m_osrHandler, SIGNAL(viewUpdated(QRect)), SLOT(updateView()));
     connect(m_osrHandler, SIGNAL(cursorUpdated(QCursor)), SLOT(updateCursor(QCursor)));
 

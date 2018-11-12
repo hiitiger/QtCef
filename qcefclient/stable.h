@@ -1,13 +1,14 @@
 #pragma once
 #include <QtCore/QtCore>
 #include <QtGui/QtGui>
+#include <QtWidgets>
 #include <QDebug>
 #define NOMINMAX
 #include <Windows.h>
 
-#include "qcefglobal.h"
+#include <memory>
 
-#include "qjsonbackport.h"
+#include "qcefglobal.h"
 
 #include "cefheader.h"
 
@@ -18,3 +19,5 @@
 #include "qtcef/client_app.h"
 #include "qtcef/client_handler.h"
 #include "qtcef/qcefwidgetos.h"
+
+

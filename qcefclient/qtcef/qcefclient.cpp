@@ -32,7 +32,6 @@ void QCefClient::initCefClient()
 
     CefSettings settings;
     settings.no_sandbox = true;
-    settings.single_process = false;
     settings.multi_threaded_message_loop = true;
     settings.windowless_rendering_enabled = true;
     settings.log_severity = LOGSEVERITY_ERROR;
@@ -50,7 +49,6 @@ void QCefClient::initCefClient()
 
 void QCefClient::shutDown()
 {
-   // CefPostTask(TID_UI, base::Bind(CefShutdown));
     __try {
         CefShutdown();
     }
@@ -76,13 +74,13 @@ QString QCefClient::webHelperPath()
 
 QString QCefClient::cachePath()
 {
-    QString cache = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+    QString cache = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
     return cache.append("\\qcefcache");
 }
 
 QString QCefClient::logPath()
 {
-    QString log = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+    QString log = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
     log.append("\\log");
     return log;
 }
@@ -122,12 +120,12 @@ void QCefClient::setWebCookie(const QString& domain, const QString& url, const Q
     cookie.expires.day_of_week = 5;
     cookie.expires.day_of_month = 11;
 
-    CefPostTask(TID_IO, NewCefRunnableMethod(manager.get(), &CefCookieManager::SetCookie, CefString(url.toUtf8()), cookie, nullptr));
+    CefPostTask(TID_IO, base::Bind(base::IgnoreResult(&CefCookieManager::SetCookie), manager.get(), CefString(url.toUtf8()), cookie, nullptr));
 }
 
 void QCefClient::clearWebCookie(const QString& url, const QString& name)
 {
     CefRefPtr<CefCookieManager> manager = CefCookieManager::GetGlobalManager(nullptr);
-    CefPostTask(TID_IO, NewCefRunnableMethod(manager.get(), &CefCookieManager::DeleteCookies, CefString(url.toUtf8()), CefString(name.toStdWString()), nullptr));
+    CefPostTask(TID_IO, base::Bind(base::IgnoreResult(&CefCookieManager::DeleteCookies), manager.get(), CefString(url.toUtf8()), CefString(name.toStdWString()), nullptr));
 }
 

@@ -2,6 +2,10 @@
 
 #include "jsfunctionwrapper.h"
 
+Q_DECLARE_METATYPE(QJsonDocument)
+
+
+
 JsFunctionWrapper::JsFunctionWrapper(QString guid, CefRefPtr<QCefClientHandler> client)
     : JsFunctionDescriptor(guid)
     , m_client(client)

@@ -6,7 +6,6 @@
 #include <iostream>
 #include <mutex>
 
-#include "qjsonbackport.h"
 
 #include "cefheader.h"
 #include "jsfunctiondescriptor.h"

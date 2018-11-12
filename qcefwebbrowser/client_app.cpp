@@ -12,7 +12,7 @@ QClientApp::QClientApp()
     renderProcessHandler_ = new QCefRenderProcessHandler();
 }
 
-void QClientApp::OnRegisterCustomSchemes(CefRefPtr<CefSchemeRegistrar> registrar)
+void QClientApp::OnRegisterCustomSchemes(CefRawPtr<CefSchemeRegistrar> registrar)
 {
-    registrar->AddCustomScheme("qcef-file", true, false, false);
+    registrar->AddCustomScheme("qcef-file", true, false, false, false, true, false);
 }

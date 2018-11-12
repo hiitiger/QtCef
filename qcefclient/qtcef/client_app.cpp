@@ -20,9 +20,9 @@ void QCefClientApp::OnBeforeCommandLineProcessing(const CefString& process_type,
     }
 }
 
-void QCefClientApp::OnRegisterCustomSchemes(CefRefPtr<CefSchemeRegistrar> registrar)
+void QCefClientApp::OnRegisterCustomSchemes(CefRawPtr<CefSchemeRegistrar> registrar)
 {
-    registrar->AddCustomScheme("qcef-file", true, false, false);
+    registrar->AddCustomScheme("qcef-file", true, false, false, false, true, false);
 }
 
 void QCefClientApp::OnContextInitialized() 

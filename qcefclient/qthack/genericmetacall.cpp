@@ -51,7 +51,7 @@ namespace Qt
             );
 
         if (!ok) {
-            qWarning() << "Calling" << metaMethod.signature() << "failed.";
+            qWarning() << "Calling" << metaMethod.methodSignature() << "failed.";
             return QVariant();
         }
         else {

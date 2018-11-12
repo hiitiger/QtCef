@@ -10,7 +10,7 @@ public:
         OVERRIDE{ return renderProcessHandler_; }
 
     virtual void OnRegisterCustomSchemes(
-        CefRefPtr<CefSchemeRegistrar> registrar) OVERRIDE;
+        CefRawPtr<CefSchemeRegistrar> registrar) OVERRIDE;
 
 private:
     // Include the default reference counting implementation.
