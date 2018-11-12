@@ -11,8 +11,6 @@ int main(int argc, char** argv )
     cefClient.initCefClient();
 
     DemoApi* api = new DemoApi();
-    cefClient.regTopName("qcef");
-    cefClient.regApi(api, "qcef", "demoapi");
 
     QCefOSWidget w;
 
