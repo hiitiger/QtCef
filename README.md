@@ -1,4 +1,7 @@
 # QtCef
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/82b587014d2548db9724bb6db8fd5d43)](https://app.codacy.com/app/hiitiger/QtCef?utm_source=github.com&utm_medium=referral&utm_content=hiitiger/QtCef&utm_campaign=Badge_Grade_Dashboard)
+
 Integrate CEF and Qt,  inject C++ API to CEF web page by utilizing reflection system based on Qt's MOC.
 
 
