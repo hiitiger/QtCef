@@ -45,9 +45,9 @@ bool QCefPage::willBlockPlugin(const QString& /*pluginPath*/)
     return false;
 }
 
-void QCefPage::onJsInvoke(const QString& object, const QString& method, const QVariantList& argList)
+void QCefPage::onJsInvoke(const QString& object, const QString& method, const QVariantList& argList, const QString& callbackId)
 {
-    emit jsInvokeMsg(object, method, argList);
+    emit jsInvokeMsg(object, method, argList, callbackId);
 }
 
 void QCefPage::onAddEventListner(const QString& path)

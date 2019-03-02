@@ -16,7 +16,7 @@
     <Keyword>Qt4VSv1.0</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <PlatformToolset>v140</PlatformToolset>
     <OutputDirectory>$(SolutionDir)bin\$(Configuration)\</OutputDirectory>
     <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
@@ -25,7 +25,7 @@
     <IntermediateDirectory>$(SolutionDir)Objdir\$(ProjectName)\$(Configuration)\</IntermediateDirectory>
     <PrimaryOutput>qcefclient</PrimaryOutput>
   </PropertyGroup>
-  <PropertyGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <PlatformToolset>v140</PlatformToolset>
     <OutputDirectory>$(SolutionDir)bin\$(Configuration)\</OutputDirectory>
     <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
@@ -36,42 +36,43 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" />
-  <ImportGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists(&apos;$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props&apos;)" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
   </ImportGroup>
-  <ImportGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists(&apos;$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props&apos;)" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <OutDir Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">$(SolutionDir)bin\$(Configuration)\</OutDir>
-    <IntDir Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">$(SolutionDir)Objdir\$(ProjectName)\$(Configuration)\</IntDir>
-    <TargetName Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">qcefclient</TargetName>
-    <IgnoreImportLibrary Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</IgnoreImportLibrary>
-    <LinkIncremental Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">false</LinkIncremental>
-    <OutDir Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">$(SolutionDir)bin\$(Configuration)\</OutDir>
-    <IntDir Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">$(SolutionDir)Objdir\$(ProjectName)\$(Configuration)\</IntDir>
-    <TargetName Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">qcefclient</TargetName>
-    <IgnoreImportLibrary Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</IgnoreImportLibrary>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)Objdir\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">qcefclient</TargetName>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IgnoreImportLibrary>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)Objdir\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">qcefclient</TargetName>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>.;.;..\common\include;..\deps\cef3538;C:\Qt\Qt5.9.3\5.9.3\msvc2015\include;C:\Qt\Qt5.9.3\5.9.3\msvc2015\include\QtWidgets;C:\Qt\Qt5.9.3\5.9.3\msvc2015\include\QtGui;C:\Qt\Qt5.9.3\5.9.3\msvc2015\include\QtANGLE;C:\Qt\Qt5.9.3\5.9.3\msvc2015\include\QtCore;release;C:\Qt\Qt5.9.3\5.9.3\msvc2015\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>$(SolutionDir)Objdir\$(ProjectName)\$(Configuration)\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
-      <DebugInformationFormat>None</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4577;4467;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
       <ForcedIncludeFiles>stable.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <ObjectFileName>$(SolutionDir)Objdir\$(ProjectName)\$(Configuration)\</ObjectFileName>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stable.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)\qcefclient.pch</PrecompiledHeaderOutputFile>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;Q_DLL_QCEFCLIENT;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
-      <ProgramDataBaseFileName></ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>
+      </ProgramDataBaseFileName>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -81,7 +82,7 @@
       <AdditionalDependencies>libcef_dll_wrapper.lib;libcef.lib;C:\Qt\Qt5.9.3\5.9.3\msvc2015\lib\Qt5Widgets.lib;C:\Qt\Qt5.9.3\5.9.3\msvc2015\lib\Qt5Gui.lib;C:\Qt\Qt5.9.3\5.9.3\msvc2015\lib\Qt5Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\bin\Release;..\common\lib\release;C:\Qt\Qt5.9.3\5.9.3\msvc2015\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <DataExecutionPrevention>true</DataExecutionPrevention>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreImportLibrary>true</IgnoreImportLibrary>
       <LinkDLL>true</LinkDLL>
       <LinkIncremental>false</LinkIncremental>
@@ -99,7 +100,7 @@
       <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;Q_DLL_QCEFCLIENT;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>.;.;..\common\include;..\deps\cef3538;C:\Qt\Qt5.9.3\5.9.3\msvc2015\include;C:\Qt\Qt5.9.3\5.9.3\msvc2015\include\QtWidgets;C:\Qt\Qt5.9.3\5.9.3\msvc2015\include\QtGui;C:\Qt\Qt5.9.3\5.9.3\msvc2015\include\QtANGLE;C:\Qt\Qt5.9.3\5.9.3\msvc2015\include\QtCore;debug;C:\Qt\Qt5.9.3\5.9.3\msvc2015\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
@@ -160,157 +161,218 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="qtcef\QCefOSRenderHandler.h">
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">qtcef\QCefOSRenderHandler.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt&quot; qtcef\QCefOSRenderHandler.h -o release\moc_QCefOSRenderHandler.cpp</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC qtcef/QCefOSRenderHandler.h</Message>
-      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_QCefOSRenderHandler.cpp;%(Outputs)</Outputs>
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">qtcef\QCefOSRenderHandler.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt&quot; qtcef\QCefOSRenderHandler.h -o debug\moc_QCefOSRenderHandler.cpp</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC qtcef/QCefOSRenderHandler.h</Message>
-      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_QCefOSRenderHandler.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">qtcef\QCefOSRenderHandler.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" qtcef\QCefOSRenderHandler.h -o release\moc_QCefOSRenderHandler.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC qtcef/QCefOSRenderHandler.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_QCefOSRenderHandler.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">qtcef\QCefOSRenderHandler.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" qtcef\QCefOSRenderHandler.h -o debug\moc_QCefOSRenderHandler.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC qtcef/QCefOSRenderHandler.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_QCefOSRenderHandler.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="qtcef\QCefPage.h">
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">qtcef\QCefPage.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt&quot; qtcef\QCefPage.h -o release\moc_QCefPage.cpp</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC qtcef/QCefPage.h</Message>
-      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_QCefPage.cpp;%(Outputs)</Outputs>
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">qtcef\QCefPage.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt&quot; qtcef\QCefPage.h -o debug\moc_QCefPage.cpp</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC qtcef/QCefPage.h</Message>
-      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_QCefPage.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">qtcef\QCefPage.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" qtcef\QCefPage.h -o release\moc_QCefPage.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC qtcef/QCefPage.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_QCefPage.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">qtcef\QCefPage.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" qtcef\QCefPage.h -o debug\moc_QCefPage.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC qtcef/QCefPage.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_QCefPage.cpp;%(Outputs)</Outputs>
     </CustomBuild>
+    <ClInclude Include="qtapiadapter\asyncfuture.h" />
     <ClInclude Include="qtcef\cefeventtranslator.h" />
     <ClInclude Include="qtcef\ceftypewrapper.h" />
     <CustomBuild Include="qtcef\client_app.h">
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">qtcef\client_app.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt&quot; qtcef\client_app.h -o release\moc_client_app.cpp</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC qtcef/client_app.h</Message>
-      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_client_app.cpp;%(Outputs)</Outputs>
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">qtcef\client_app.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt&quot; qtcef\client_app.h -o debug\moc_client_app.cpp</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC qtcef/client_app.h</Message>
-      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_client_app.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">qtcef\client_app.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" qtcef\client_app.h -o release\moc_client_app.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC qtcef/client_app.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_client_app.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">qtcef\client_app.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" qtcef\client_app.h -o debug\moc_client_app.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC qtcef/client_app.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_client_app.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <ClInclude Include="qtcef\client_handler.h" />
     <ClInclude Include="qtcef\extensionhandler.h" />
     <ClInclude Include="qthack\genericmetacall.h" />
     <ClInclude Include="qtcef\jsfunctionwrapper.h" />
     <CustomBuild Include="qtapiadapter\qcefapiadapter.h">
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">qtapiadapter\qcefapiadapter.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt&quot; qtapiadapter\qcefapiadapter.h -o release\moc_qcefapiadapter.cpp</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC qtapiadapter/qcefapiadapter.h</Message>
-      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_qcefapiadapter.cpp;%(Outputs)</Outputs>
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">qtapiadapter\qcefapiadapter.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt&quot; qtapiadapter\qcefapiadapter.h -o debug\moc_qcefapiadapter.cpp</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC qtapiadapter/qcefapiadapter.h</Message>
-      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_qcefapiadapter.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">qtapiadapter\qcefapiadapter.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" qtapiadapter\qcefapiadapter.h -o release\moc_qcefapiadapter.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC qtapiadapter/qcefapiadapter.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_qcefapiadapter.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">qtapiadapter\qcefapiadapter.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" qtapiadapter\qcefapiadapter.h -o debug\moc_qcefapiadapter.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC qtapiadapter/qcefapiadapter.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_qcefapiadapter.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <ClInclude Include="qtapiadapter\qcefapiobject.h" />
     <CustomBuild Include="qtcef\qcefclient.h">
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">qtcef\qcefclient.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt&quot; qtcef\qcefclient.h -o release\moc_qcefclient.cpp</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC qtcef/qcefclient.h</Message>
-      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_qcefclient.cpp;%(Outputs)</Outputs>
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">qtcef\qcefclient.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt&quot; qtcef\qcefclient.h -o debug\moc_qcefclient.cpp</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC qtcef/qcefclient.h</Message>
-      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_qcefclient.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">qtcef\qcefclient.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" qtcef\qcefclient.h -o release\moc_qcefclient.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC qtcef/qcefclient.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_qcefclient.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">qtcef\qcefclient.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" qtcef\qcefclient.h -o debug\moc_qcefclient.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC qtcef/qcefclient.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_qcefclient.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="qtcef\qcefjsdialoghandler.h">
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">qtcef\qcefjsdialoghandler.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt&quot; qtcef\qcefjsdialoghandler.h -o release\moc_qcefjsdialoghandler.cpp</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC qtcef/qcefjsdialoghandler.h</Message>
-      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_qcefjsdialoghandler.cpp;%(Outputs)</Outputs>
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">qtcef\qcefjsdialoghandler.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt&quot; qtcef\qcefjsdialoghandler.h -o debug\moc_qcefjsdialoghandler.cpp</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC qtcef/qcefjsdialoghandler.h</Message>
-      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_qcefjsdialoghandler.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">qtcef\qcefjsdialoghandler.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" qtcef\qcefjsdialoghandler.h -o release\moc_qcefjsdialoghandler.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC qtcef/qcefjsdialoghandler.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_qcefjsdialoghandler.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">qtcef\qcefjsdialoghandler.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" qtcef\qcefjsdialoghandler.h -o debug\moc_qcefjsdialoghandler.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC qtcef/qcefjsdialoghandler.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_qcefjsdialoghandler.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="qtcef\qcefwidgetos.h">
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">qtcef\qcefwidgetos.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt&quot; qtcef\qcefwidgetos.h -o release\moc_qcefwidgetos.cpp</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC qtcef/qcefwidgetos.h</Message>
-      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_qcefwidgetos.cpp;%(Outputs)</Outputs>
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">qtcef\qcefwidgetos.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt&quot; -I&quot;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um&quot; -I&quot;C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt&quot; qtcef\qcefwidgetos.h -o debug\moc_qcefwidgetos.cpp</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC qtcef/qcefwidgetos.h</Message>
-      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_qcefwidgetos.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">qtcef\qcefwidgetos.h;release\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" qtcef\qcefwidgetos.h -o release\moc_qcefwidgetos.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC qtcef/qcefwidgetos.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_qcefwidgetos.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">qtcef\qcefwidgetos.h;debug\moc_predefs.h;C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -DQ_DLL_QCEFCLIENT -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/mkspecs/win32-msvc -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/qcefclient -ID:/opensource/chromium/QtCef/common/include -ID:/opensource/chromium/QtCef/deps/cef3538 -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtWidgets -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtGui -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtANGLE -IC:/Qt/Qt5.9.3/5.9.3/msvc2015/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" qtcef\qcefwidgetos.h -o debug\moc_qcefwidgetos.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC qtcef/qcefwidgetos.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_qcefwidgetos.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="stable.h">
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">echo /*-------------------------------------------------------------------- >stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * Precompiled header source file used by Visual Studio.NET to generate>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * the .pch file.>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo *>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * Due to issues with the dependencies checker within the IDE, it>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * sometimes fails to recompile the PCH file, if we force the IDE to>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * create the PCH file directly from the header file.>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo *>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * This file is auto-generated by qmake since no PRECOMPILED_SOURCE was>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * specified, and is used as the common stdafx.cpp. The file is only>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * generated when creating .vcxproj project files, and is not used for>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * command line compilations by nmake.>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo *>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * WARNING: All changes made in this file will be lost.>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo --------------------------------------------------------------------*/>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo #include &quot;stable.h&quot;>>stable.h.cpp</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">Generating precompiled header source file &apos;stable.h.cpp&apos; ...</Message>
-      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">stable.h.cpp;%(Outputs)</Outputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">echo /*-------------------------------------------------------------------- >stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * Precompiled header source file used by Visual Studio.NET to generate>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * the .pch file.>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo *>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * Due to issues with the dependencies checker within the IDE, it>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * sometimes fails to recompile the PCH file, if we force the IDE to>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * create the PCH file directly from the header file.>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo *>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * This file is auto-generated by qmake since no PRECOMPILED_SOURCE was>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * specified, and is used as the common stdafx.cpp. The file is only>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * generated when creating .vcxproj project files, and is not used for>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * command line compilations by nmake.>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo *>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo * WARNING: All changes made in this file will be lost.>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo --------------------------------------------------------------------*/>>stable.h.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;echo #include &quot;stable.h&quot;>>stable.h.cpp</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">Generating precompiled header source file &apos;stable.h.cpp&apos; ...</Message>
-      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">stable.h.cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">echo /*-------------------------------------------------------------------- &gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * Precompiled header source file used by Visual Studio.NET to generate&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * the .pch file.&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo *&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * Due to issues with the dependencies checker within the IDE, it&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * sometimes fails to recompile the PCH file, if we force the IDE to&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * create the PCH file directly from the header file.&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo *&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * This file is auto-generated by qmake since no PRECOMPILED_SOURCE was&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * specified, and is used as the common stdafx.cpp. The file is only&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * generated when creating .vcxproj project files, and is not used for&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * command line compilations by nmake.&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo *&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * WARNING: All changes made in this file will be lost.&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo --------------------------------------------------------------------*/&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo #include "stable.h"&gt;&gt;stable.h.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Generating precompiled header source file 'stable.h.cpp' ...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stable.h.cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">echo /*-------------------------------------------------------------------- &gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * Precompiled header source file used by Visual Studio.NET to generate&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * the .pch file.&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo *&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * Due to issues with the dependencies checker within the IDE, it&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * sometimes fails to recompile the PCH file, if we force the IDE to&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * create the PCH file directly from the header file.&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo *&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * This file is auto-generated by qmake since no PRECOMPILED_SOURCE was&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * specified, and is used as the common stdafx.cpp. The file is only&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * generated when creating .vcxproj project files, and is not used for&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * command line compilations by nmake.&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo *&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * WARNING: All changes made in this file will be lost.&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo --------------------------------------------------------------------*/&gt;&gt;stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo #include "stable.h"&gt;&gt;stable.h.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating precompiled header source file 'stable.h.cpp' ...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stable.h.cpp;%(Outputs)</Outputs>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debug\moc_QCefOSRenderHandler.cpp">
-      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="release\moc_QCefOSRenderHandler.cpp">
-      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="debug\moc_QCefPage.cpp">
-      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="release\moc_QCefPage.cpp">
-      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="debug\moc_client_app.cpp">
-      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="release\moc_client_app.cpp">
-      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
       <FileType>Document</FileType>
-      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</ExcludedFromBuild>
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">C:\Qt\Qt5.9.3\5.9.3\msvc2015\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">cl -BxC:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zi -MDd -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E C:\Qt\Qt5.9.3\5.9.3\msvc2015\mkspecs\features\data\dummy.cpp 2>NUL >debug\moc_predefs.h</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">Generate moc_predefs.h</Message>
-      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_predefs.h;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Qt\Qt5.9.3\5.9.3\msvc2015\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl -BxC:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zi -MDd -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E C:\Qt\Qt5.9.3\5.9.3\msvc2015\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;debug\moc_predefs.h</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generate moc_predefs.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_predefs.h;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <FileType>Document</FileType>
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">C:\Qt\Qt5.9.3\5.9.3\msvc2015\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">cl -BxC:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -O2 -MD -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E C:\Qt\Qt5.9.3\5.9.3\msvc2015\mkspecs\features\data\dummy.cpp 2>NUL >release\moc_predefs.h</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">Generate moc_predefs.h</Message>
-      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_predefs.h;%(Outputs)</Outputs>
-      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</ExcludedFromBuild>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Qt\Qt5.9.3\5.9.3\msvc2015\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl -BxC:\Qt\Qt5.9.3\5.9.3\msvc2015\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -O2 -MD -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E C:\Qt\Qt5.9.3\5.9.3\msvc2015\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;release\moc_predefs.h</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Generate moc_predefs.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_predefs.h;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <ClCompile Include="debug\moc_qcefapiadapter.cpp">
-      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="release\moc_qcefapiadapter.cpp">
-      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="debug\moc_qcefclient.cpp">
-      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="release\moc_qcefclient.cpp">
-      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="debug\moc_qcefjsdialoghandler.cpp">
-      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="release\moc_qcefjsdialoghandler.cpp">
-      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="debug\moc_qcefwidgetos.cpp">
-      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="release\moc_qcefwidgetos.cpp">
-      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="stable.h.cpp">
-      <ForcedIncludeFiles Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">$(NOINHERIT)</ForcedIncludeFiles>
-      <PrecompiledHeaderFile Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">stable.h</PrecompiledHeaderFile>
-      <PrecompiledHeader Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">Create</PrecompiledHeader>
-      <ForcedIncludeFiles Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">$(NOINHERIT)</ForcedIncludeFiles>
-      <PrecompiledHeaderFile Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">stable.h</PrecompiledHeaderFile>
-      <PrecompiledHeader Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">Create</PrecompiledHeader>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NOINHERIT)</ForcedIncludeFiles>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stable.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NOINHERIT)</ForcedIncludeFiles>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stable.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

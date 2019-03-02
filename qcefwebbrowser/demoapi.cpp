@@ -17,3 +17,10 @@ void DemoApi::apiJson(QJsonDocument jsonDoc, JsFunctionWrapper callback)
 {
 }
 
+
+QFuture<QJsonDocument> DemoApi::apiJsonPromise(QJsonDocument jsonDoc)
+{
+    QFutureInterface<QJsonDocument> retfuture;
+    return retfuture.future();
+}
+

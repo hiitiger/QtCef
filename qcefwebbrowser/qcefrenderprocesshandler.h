@@ -55,6 +55,7 @@ private:
 
 class QCefEventFunctionHandlerWrapper;
 class QCefFuncCallback;
+class AsyncCefMethodCallback;
 
 class QCefRenderProcessHandler : public CefRenderProcessHandler
 {
@@ -64,10 +65,13 @@ public:
     long genFunctionId();
     void addFunctionCallback(CefRefPtr<CefFrame> frame, QString guid, const QCefFuncCallback& callback);
 
+    QString saveAsyncMethodCallback(CefRefPtr<CefFrame> frame, std::shared_ptr<AsyncCefMethodCallback>);
+
     void invokeEvent(CefRefPtr<CefBrowser>& browser, CefRefPtr<CefProcessMessage>& message);
     void invokeCallback(CefRefPtr<CefBrowser>& browser, CefRefPtr<CefProcessMessage>& message);
     void runJavaScript(CefRefPtr<CefBrowser>& browser, CefRefPtr<CefProcessMessage>& message);
     void invokeJsFunction(CefRefPtr<CefBrowser>& browser, CefRefPtr<CefProcessMessage>& message);
+    void invokeAsyncMethodCallback(CefRefPtr<CefBrowser>& browser, CefRefPtr<CefProcessMessage>& message);
 
     void prepareFrameHandler(CefRefPtr<CefFrame> frame);
     void releaeFrameHandler(CefRefPtr<CefFrame> frame);
@@ -87,6 +91,7 @@ public:
 
     //CefRenderProcessHandler
     virtual void OnRenderThreadCreated(CefRefPtr<CefListValue> extra_info);
+    virtual void OnWebKitInitialized();
 
     virtual void OnContextCreated(CefRefPtr<CefBrowser> browser,
         CefRefPtr<CefFrame> frame,
@@ -102,7 +107,7 @@ public:
 
 private:
     IMPLEMENT_REFCOUNTING(QCefRenderProcessHandler);
-    long m_funciontId;
+    long m_funciontId = 0;
 
     typedef QMap<QString, QCefEventFunctionHandlerWrapper> EventCallbackMap;
 
@@ -112,4 +117,9 @@ private:
 
     QMap<int64_t, FunctionCallbackMap> m_frameFuncionCallbacks;
 
+
+    long m_callbackId = 0;
+    typedef QMap<int, std::shared_ptr<AsyncCefMethodCallback>> AsyncMethodCallbackMap;
+
+    QMap<int64_t, AsyncMethodCallbackMap> m_asyncCefCallbacks;
 };

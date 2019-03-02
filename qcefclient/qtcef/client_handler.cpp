@@ -366,15 +366,17 @@ bool QCefClientHandler::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, 
         if (clientListner_.get())
         {
             CefRefPtr<CefListValue> arguments = message->GetArgumentList();
-            if (arguments->GetSize() == 3)
+            if (arguments->GetSize() == 4)
             {
                 QString objectName = QString::fromStdWString(arguments->GetString(0).ToWString());
                 QString methodName = QString::fromStdWString(arguments->GetString(1).ToWString());
-                CefRefPtr<CefListValue> cefListValue = arguments->GetList(2);
 
+                CefRefPtr<CefListValue> cefListValue = arguments->GetList(2);
                 QVariantList argList = convertArgList(this, cefListValue);
 
-                clientListner_->onJsInvoke(objectName, methodName, argList);
+                QString callbackId = QString::fromStdWString(arguments->GetString(3).ToWString());
+
+                clientListner_->onJsInvoke(objectName, methodName, argList, callbackId);
             }         
         }
     }

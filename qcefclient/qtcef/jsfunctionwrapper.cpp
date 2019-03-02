@@ -3,8 +3,7 @@
 #include "jsfunctionwrapper.h"
 
 Q_DECLARE_METATYPE(QJsonDocument)
-
-
+Q_DECLARE_METATYPE(QFuture<QJsonDocument>)
 
 JsFunctionWrapper::JsFunctionWrapper(QString guid, CefRefPtr<QCefClientHandler> client)
     : JsFunctionDescriptor(guid)
@@ -39,7 +38,11 @@ CefRefPtr<CefListValue> JsFunctionWrapper::convertToCefList(QVariantList argumen
     {
         int type = argument.at(i).userType();
 
-        if (type == QVariant::String)
+        if (argument.at(i).isNull())
+        {
+            argList->SetNull(i);
+        }
+        else if (type == QVariant::String)
         {
             argList->SetString(i, argument.at(i).toString().prepend("S_").toStdWString());
         }
@@ -59,7 +62,7 @@ CefRefPtr<CefListValue> JsFunctionWrapper::convertToCefList(QVariantList argumen
         {
             QVariantList variantList = argument.at(i).toList();
             CefRefPtr<CefListValue> list = convertToCefList(variantList);
-            argList->SetList(type, list);
+            argList->SetList(i, list);
         }
         else if (type == QMetaTypeId<QJsonDocument>::qt_metatype_id())
         {

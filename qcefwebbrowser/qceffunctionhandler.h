@@ -1,8 +1,45 @@
 #pragma once
 #include "include/cef_v8.h"
+#include "ceffunc.h"
+#include "promise.h"
 
 static QMap<int, QString> g_typeNames;
 
+
+
+class AsyncCefMethodCallback
+{
+    CefRefPtr<CefV8Context> m_context;
+    CefRefPtr<CefV8Value> m_resolve;
+    CefRefPtr<CefV8Value> m_reject;
+public:
+    AsyncCefMethodCallback(const CefRefPtr<CefV8Context>& c, const CefRefPtr<CefV8Value>& res, const CefRefPtr<CefV8Value>& rej) {
+        m_context = c;
+        m_resolve = res;
+        m_reject = rej;
+    }
+
+    void success(const CefRefPtr<CefListValue>& listValue)
+    {
+        if (m_resolve.get() && m_context.get() && m_context->Enter())
+        {
+            CefV8ValueList args;
+            args.push_back(QCefFuncCallback::getCefV8Value(listValue, 0));
+            m_resolve->ExecuteFunction(nullptr, args);
+            m_context->Exit();
+        }
+    }
+    void fail(const CefString& exception)
+    {
+        if (m_reject.get() && m_context.get() && m_context->Enter())
+        {
+            CefV8ValueList args;
+            args.push_back(CefV8Value::CreateString(exception));
+            m_reject->ExecuteFunction(nullptr, args);
+            m_context->Exit();
+        }
+    }
+};
 
 class JsFunctionWrapper : public JsFunctionDescriptor
 {
@@ -10,13 +47,16 @@ public:
     JsFunctionWrapper(){ ; }
 };
 
+
 Q_DECLARE_METATYPE(JsFunctionWrapper)
 Q_DECLARE_METATYPE(QJsonDocument)
+Q_DECLARE_METATYPE(QFuture<QJsonDocument>)
 
 inline void setupTypeNames()
 {
-    qRegisterMetaType<QJsonDocument>("QJsonDocument");
     qRegisterMetaType<JsFunctionWrapper>("JsFunctionWrapper");
+    qRegisterMetaType<QJsonDocument>("QJsonDocument");
+    qRegisterMetaType<QFuture<QJsonDocument>>("QFuture<QJsonDocument>");
 
     g_typeNames.insert(QMetaType::QString, "string");
     g_typeNames.insert(QMetaType::Int, "int");
@@ -185,14 +225,27 @@ public:
         }
 
 
+        auto context = CefV8Context::GetCurrentContext();
+        auto window = context->GetGlobal();
+        auto createPromise = window->GetValue(kPromiseCreatorFunction);
+        auto promiseWrapper = createPromise->ExecuteFunctionWithContext(context, nullptr, CefV8ValueList());
+
+        retval = promiseWrapper->GetValue("p");
+
+        auto resolve = promiseWrapper->GetValue("resolve");
+        auto reject = promiseWrapper->GetValue("reject");
+
+        auto asyncCallback = std::make_shared<AsyncCefMethodCallback>(context, resolve, reject);
+        auto callbackId = m_renderHandler->saveAsyncMethodCallback(m_frame, asyncCallback);
+
         CefRefPtr<CefBrowser> browser = m_frame->GetBrowser();
         CefRefPtr<CefProcessMessage> message = CefProcessMessage::Create("InvokeMethod");
         message->GetArgumentList()->SetSize(3);
         message->GetArgumentList()->SetString(0, m_objectPath.toUtf8().constData());
         message->GetArgumentList()->SetString(1, name);
         message->GetArgumentList()->SetList(2, argList);
+        message->GetArgumentList()->SetString(3, callbackId.toStdString());
         browser->SendProcessMessage(PID_BROWSER, message);
-        retval = CefV8Value::CreateBool(true);
         return true; 
     }
 
@@ -303,4 +356,6 @@ private:
     IMPLEMENT_REFCOUNTING(QCefFunctionHandler);
 
 };
+
+
 

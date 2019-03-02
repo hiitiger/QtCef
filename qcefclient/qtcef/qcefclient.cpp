@@ -15,6 +15,7 @@ QCefClient::QCefClient(QObject* parent /*= nullptr*/)
     qRegisterMetaType<JsFunctionDescriptor>("JsFunctionDescriptor");
     qRegisterMetaType<JsFunctionWrapper>("JsFunctionWrapper");
     qRegisterMetaType<QJsonDocument>("QJsonDocument");
+    qRegisterMetaType<QFuture<QJsonDocument>>("QFuture<QJsonDocument>");
 
 }
 

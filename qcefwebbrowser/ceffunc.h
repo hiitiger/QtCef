@@ -33,13 +33,17 @@ public:
         context->Exit();
     }
 
-    static CefRefPtr<CefV8Value> getCefV8Value(CefRefPtr<CefListValue>& listValue, int index)
+    static CefRefPtr<CefV8Value> getCefV8Value(const CefRefPtr<CefListValue>& listValue, int index)
     {
         CefRefPtr<CefV8Value> value;
         CefValueType type = listValue->GetType(index);
         if (type == VTYPE_NULL)
         {
             value = CefV8Value::CreateNull();
+        }
+        else if (type == VTYPE_INVALID)
+        {
+            value = CefV8Value::CreateUndefined();
         }
         else if (type == VTYPE_BOOL)
         {

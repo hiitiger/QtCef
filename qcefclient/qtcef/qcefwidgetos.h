@@ -55,8 +55,7 @@ signals:
     void titleChanged(const QString& title);
     void enabledOperationsChanged();
 
-	void jsInvokeMsg(const QString& object, const QString& method, const QVariantList& args);
-
+    void jsInvokeMsg(const QString& object, const QString& method, const QVariantList& args, const QString& callbackId);
 
 public slots:
     void refresh();
@@ -100,7 +99,7 @@ protected slots:
     virtual void onAddressChange(const QString& url);
     virtual void onTitleChange(const QString& title);
     virtual void onLoadingChanged(bool);
-    virtual void onJsInvoke(const QString& object, const QString& method, const QVariantList& argList);
+    virtual void onJsInvoke(const QString& object, const QString& method, const QVariantList& argList, const QString& callbackId);
     virtual void showDevTool();
     virtual void closeDevTool();
 

@@ -1,3 +1,6 @@
 .vs
 Objdir
 .qmake.stash
+bin
+common/lib
+common/src

@@ -23,7 +23,7 @@ signals:
     void addressChanged(const QString& url);
     void titleChanged(const QString& title);
     void loadingChanged(bool isLoading);
-    void jsInvokeMsg(const QString& object, const QString& method, const QVariantList& argList);
+    void jsInvokeMsg(const QString& object, const QString& method, const QVariantList& argList, const QString& callbackId);
     void addEventListnerMsg(const QString& path);
 
     void requestShowDevTool();
@@ -39,7 +39,7 @@ public:
 
     virtual bool willBlockPlugin(const QString& pluginPath);
 
-    virtual void onJsInvoke(const QString& object, const QString& method, const QVariantList& argList);
+    virtual void onJsInvoke(const QString& object, const QString& method, const QVariantList& argList, const QString& callbackId);
     virtual void onAddEventListner(const QString& path);
 
     virtual void showDevTool();

@@ -3,6 +3,17 @@
 #include "qcefapiadapter.h"
 #include "qthack/genericmetacall.h"
 #include "qthack/genericsignalmap.h"
+#include "asyncfuture.h"
+
+
+Q_DECLARE_METATYPE(QJsonDocument)
+Q_DECLARE_METATYPE(QFuture<QJsonDocument>)
+
+struct AsyncMetaCallWrapper : Qt::MetaCallWrapper
+{
+    QString callbackId = 0;
+};
+
 
 QCefApiAdapter::QCefApiAdapter(QCefOSWidget* w, QObject* parent)
     : QObject(parent)
@@ -18,7 +29,7 @@ void QCefApiAdapter::initApi(QCefApiObject* apiImpl, QString parentPath, QString
     m_apiName = apiName;
     m_parentPath = parentPath;
 
-    connect(m_cefWidget, SIGNAL(jsInvokeMsg(const QString&, const QString&, const QVariantList&)), SLOT(onJsInvokeMsg(const QString&, const QString&, const QVariantList&)));
+    connect(m_cefWidget, SIGNAL(jsInvokeMsg(const QString&, const QString&, const QVariantList&, const QString&)), SLOT(onJsInvokeMsg(const QString&, const QString&, const QVariantList&, const QString&)));
     connect(m_cefWidget, SIGNAL(addEventListnerMsg(const QString&)), SLOT(onAddEventListnerMsg(const QString&)));
 
     parseSignal();
@@ -53,8 +64,26 @@ void QCefApiAdapter::invokeEvent(QString eventName, QVariantList arguments)
 
         CefRefPtr<CefListValue> cefList = JsFunctionWrapper::convertToCefList(arguments);
         CefRefPtr<CefProcessMessage> processMessage = CefProcessMessage::Create("InvokeEvent");
+        processMessage->GetArgumentList()->SetSize(2);
         processMessage->GetArgumentList()->SetString(0, eventPath.toStdWString());
         processMessage->GetArgumentList()->SetList(1, cefList);
+        m_cefWidget->sendProcessMessage(PID_RENDERER, processMessage);
+    }
+}
+
+void QCefApiAdapter::invokeAsyncResult(const AsyncMetaCallWrapper& wrapper)
+{
+    if (m_cefWidget)
+    {
+        QVariantList arg;
+        arg.push_back(wrapper.res);
+
+        CefRefPtr<CefListValue> cefList = JsFunctionWrapper::convertToCefList(arg);
+        CefRefPtr<CefProcessMessage> processMessage = CefProcessMessage::Create("InvokeAsyncResult");
+        processMessage->GetArgumentList()->SetSize(2);
+        processMessage->GetArgumentList()->SetString(0, wrapper.callbackId.toStdString());
+        processMessage->GetArgumentList()->SetBool(1, wrapper.ok);
+        processMessage->GetArgumentList()->SetList(2, cefList);
         m_cefWidget->sendProcessMessage(PID_RENDERER, processMessage);
     }
 }
@@ -66,25 +95,7 @@ struct MetaCallArg
     const QVariantList& args;
 };
 
-void metaCall_(void* a)
-{
-    auto arg = (MetaCallArg*)a;
-    Qt::metaCall(arg->obj, arg->metaMethod, arg->args);
-}
-
-bool metaCallSEH_(void* a)
-{
-    __try {
-        metaCall_(a);
-    }
-    __except (EXCEPTION_EXECUTE_HANDLER) {
-        return false;
-    }
-
-    return true;
-}
-
-void QCefApiAdapter::onJsInvokeMsg(const QString& object, const QString& method, const QVariantList& args)
+void QCefApiAdapter::onJsInvokeMsg(const QString& object, const QString& method, const QVariantList& args, const QString& callbackId)
 {
     if (object != apiPath())
     {
@@ -126,7 +137,40 @@ void QCefApiAdapter::onJsInvokeMsg(const QString& object, const QString& method,
                     }
                 }
 
-                metaCallSEH_((void*)&MetaCallArg { m_apiObject, metaMethod, args2 });
+                auto returnType = metaMethod.returnType();
+
+                AsyncMetaCallWrapper wrapper;
+                wrapper.object = m_apiObject;
+                wrapper.metaMethod = metaMethod;
+                wrapper.args = args;
+                wrapper.callbackId = callbackId;
+
+                wrapper.run();
+
+                if (wrapper.ok)
+                {
+                    if (returnType == qMetaTypeId<QFuture<QJsonDocument>>())
+                    {
+                        auto future = wrapper.res.value<QFuture<QJsonDocument>>();
+                        AsyncFuture::observe(future).subscribe([wrapper, this, weakSelf = QPointer<QCefApiAdapter>(this)](QJsonDocument res) mutable {
+                            if (weakSelf)
+                            {
+                                wrapper.res = QVariant::fromValue(res);
+                                invokeAsyncResult(wrapper);
+                            }
+                        }, []() {});
+                    }
+                    else
+                    {
+                        invokeAsyncResult(wrapper);
+                    }
+                }
+                else
+                {
+                    wrapper.res = QVariant("invoke metaMethod failed");
+                    invokeAsyncResult(wrapper);
+                }
+
                 break;
             }
         }

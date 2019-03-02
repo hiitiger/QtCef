@@ -3,6 +3,8 @@
 #include "qcefrenderprocesshandler.h"
 #include "ceffunc.h"
 #include "demoapi.h"
+#include "promise.h"
+
 
 MyV8Accessor::MyV8Accessor()
 {
@@ -64,6 +66,21 @@ void QCefRenderProcessHandler::addFunctionCallback(CefRefPtr<CefFrame> frame, QS
         FunctionCallbackMap& callbackMap = m_frameFuncionCallbacks[frameId];
         callbackMap.insert(guid, callback);
     }
+}
+
+QString QCefRenderProcessHandler::saveAsyncMethodCallback(CefRefPtr<CefFrame> frame, std::shared_ptr<AsyncCefMethodCallback> callback)
+{
+    int64_t frameId = frame->GetIdentifier();
+
+    if (m_asyncCefCallbacks.contains(frameId))
+    {
+        m_callbackId += 1;
+        auto& callbackMap = m_asyncCefCallbacks[frameId];
+        callbackMap.insert(m_callbackId, callback);
+        return QString::number(m_callbackId);
+    }
+
+    return QString();
 }
 
 void QCefRenderProcessHandler::invokeEvent(CefRefPtr<CefBrowser>& browser, CefRefPtr<CefProcessMessage>& message)
@@ -162,6 +179,38 @@ void QCefRenderProcessHandler::invokeJsFunction(CefRefPtr<CefBrowser>& browser, 
     }
 }
 
+void QCefRenderProcessHandler::invokeAsyncMethodCallback(CefRefPtr<CefBrowser>& browser, CefRefPtr<CefProcessMessage>& message)
+{
+    std::vector<int64_t> frameIds;
+    browser->GetFrameIdentifiers(frameIds);
+
+    QString callbackId = QString::fromStdWString(message->GetArgumentList()->GetString(0).ToWString());
+
+    for (size_t i = 0; i < frameIds.size(); i++)
+    {
+        if (m_asyncCefCallbacks.contains(frameIds[i]))
+        {
+            auto& callbackMap = m_asyncCefCallbacks[frameIds[i]];
+
+            auto callback = callbackMap.take(callbackId.toInt());
+            if (callback)
+            {
+                bool succeed = message->GetArgumentList()->GetBool(1);
+                CefRefPtr<CefListValue> argument = message->GetArgumentList()->GetList(2);
+                if (succeed)
+                {
+                    callback->success(argument);
+                }
+                else
+                {
+                    callback->fail(argument->GetString(0));
+                }
+            }
+            return;
+        }
+    }
+}
+
 void QCefRenderProcessHandler::prepareFrameHandler(CefRefPtr<CefFrame> frame)
 {
     int64_t frameId = frame->GetIdentifier();
@@ -178,6 +227,9 @@ void QCefRenderProcessHandler::prepareFrameHandler(CefRefPtr<CefFrame> frame)
     }
     FunctionCallbackMap funtionCallbackMap;
     m_frameFuncionCallbacks.insert(frameId, funtionCallbackMap);
+
+    AsyncMethodCallbackMap asyncMethodCallbackMap;
+    m_asyncCefCallbacks.insert(frameId, asyncMethodCallbackMap);
 }
 
 void QCefRenderProcessHandler::releaeFrameHandler(CefRefPtr<CefFrame> frame)
@@ -369,6 +421,11 @@ void QCefRenderProcessHandler::OnRenderThreadCreated(CefRefPtr<CefListValue> ext
     SetUnhandledExceptionFilter(TopLevelExceptionHandler);
 }
 
+void QCefRenderProcessHandler::OnWebKitInitialized()
+{
+    CefRegisterExtension(CefString(L"qtcef/promisecreator"), kPromiseCreatorScript, NULL);
+}
+
 void QCefRenderProcessHandler::OnContextCreated(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefV8Context> context)
 {
     prepareFrameHandler(frame);
@@ -407,6 +464,10 @@ bool QCefRenderProcessHandler::OnProcessMessageReceived(CefRefPtr<CefBrowser> br
     else if(message->GetName() == "InvokeJsFunction")
     {
         invokeJsFunction(browser, message);
+    }
+    else if (message->GetName() == "InvokeAsyncResult")
+    {
+        invokeAsyncMethodCallback(browser, message);
     }
     return true;
 }

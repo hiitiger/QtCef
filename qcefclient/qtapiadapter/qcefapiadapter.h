@@ -2,6 +2,10 @@
 
 class QCefApiObject;
 class GenericSignalMapper;
+struct AsyncMetaCallWrapper;
+
+
+
 
 class Q_DLL_QCEFCLIENT_API QCefApiAdapter : public QObject
 {
@@ -15,9 +19,10 @@ public:
 
     void runJavascript(const QString& code);
     void invokeEvent(QString eventName, QVariantList arguments);
+    void invokeAsyncResult(const AsyncMetaCallWrapper&);
 
 private slots:
-    void onJsInvokeMsg(const QString& object, const QString& method, const QVariantList& args);
+    void onJsInvokeMsg(const QString& object, const QString& method, const QVariantList& args, const QString& callbackId);
     void onAddEventListnerMsg(const QString& path);
     void onGenericSignal(QObject* sender, QMetaMethod signal, QVariantList args);
 
@@ -34,3 +39,6 @@ protected:
 
     QList<GenericSignalMapper*> m_mappers;
 };
+
+
+

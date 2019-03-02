@@ -25,3 +25,19 @@ void DemoApi::apiJson(QJsonDocument jsonDoc, JsFunctionWrapper callback)
 	callback.invoke(arg);
 }
 
+QFuture<QJsonDocument> DemoApi::apiJsonPromise(QJsonDocument jsonDoc)
+{
+    QFutureInterface<QJsonDocument> retfuture;
+
+    QTimer::singleShot(1000, [retfuture, jsonDoc]() mutable {
+
+        QVariantMap result;
+        result.insert("raw", jsonDoc.toVariant());
+
+        retfuture.reportResult(QJsonDocument::fromVariant(result));
+        retfuture.reportFinished();
+    });
+
+    return retfuture.future();
+}
+

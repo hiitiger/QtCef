@@ -9,5 +9,9 @@ public:
     ~DemoApi();
 
 
-	Q_INVOKABLE void apiJson(QJsonDocument jsonDoc, JsFunctionWrapper callback);
+    Q_INVOKABLE void apiJson(QJsonDocument jsonDoc, JsFunctionWrapper callback);
+
+    Q_INVOKABLE QFuture<QJsonDocument> apiJsonPromise(QJsonDocument jsonDoc);
+
+
 };

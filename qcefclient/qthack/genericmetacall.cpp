@@ -4,7 +4,7 @@
 namespace Qt
 {
 
-    QVariant  metaCall(QObject* object, QMetaMethod metaMethod, QVariantList args)
+    bool MetaCallWrapper::run()
     {
         QList<QGenericArgument> arguments;
 
@@ -19,22 +19,21 @@ namespace Qt
             QGenericArgument genericArgument(
                 QMetaType::typeName(argument.userType()),
                 const_cast<void*>(argument.constData())
-                );
+            );
 
             arguments << genericArgument;
         }
 
-        QVariant returnValue(QMetaType::type(metaMethod.typeName()),
-            static_cast<void*>(NULL));
+        res = QVariant((QVariant::Type)metaMethod.returnType(), static_cast<void*>(nullptr));
 
         QGenericReturnArgument returnArgument(
-            metaMethod.typeName(),
-            const_cast<void*>(returnValue.constData())
-            );
+            res.typeName(),
+            const_cast<void*>(res.constData())
+        );
 
         // Perform the call
 
-        bool ok = metaMethod.invoke(
+        ok = metaMethod.invoke(
             object,
             Qt::AutoConnection, // In case the object is in another thread.
             returnArgument,
@@ -48,15 +47,8 @@ namespace Qt
             arguments.value(7),
             arguments.value(8),
             arguments.value(9)
-            );
+        );
 
-        if (!ok) {
-            qWarning() << "Calling" << metaMethod.methodSignature() << "failed.";
-            return QVariant();
-        }
-        else {
-            return returnValue;
-        }
+        return ok;
     }
-
 };

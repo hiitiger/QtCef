@@ -443,7 +443,7 @@ bool QCefOSWidget::createBrowser()
     connect(m_cefPage, SIGNAL(addressChanged(const QString&)), SLOT(onAddressChange(const QString&)));
     connect(m_cefPage, SIGNAL(titleChanged(const QString&)), SLOT(onTitleChange(const QString&)));
     connect(m_cefPage, SIGNAL(loadingChanged(bool)), SLOT(onLoadingChanged(bool)));
-    connect(m_cefPage, SIGNAL(jsInvokeMsg(const QString&, const QString&, const QVariantList&)), SLOT(onJsInvoke(const QString&, const QString&, const QVariantList&)));
+    connect(m_cefPage, SIGNAL(jsInvokeMsg(const QString&, const QString&, const QVariantList&, const QString&)), SLOT(onJsInvoke(const QString&, const QString&, const QVariantList&, const QString&)));
     connect(m_cefPage, SIGNAL(requestShowDevTool()), SLOT(showDevTool()));
 
     m_clientHandler = new QCefClientHandler(m_cefPage, CefRefPtr<CefRenderHandler>(m_osrHandler.get()));
@@ -540,10 +540,9 @@ void QCefOSWidget::onLoadingChanged(bool loading)
 }
 
 
-void QCefOSWidget::onJsInvoke(const QString& object, const QString& method, const QVariantList& argList)
+void QCefOSWidget::onJsInvoke(const QString& object, const QString& method, const QVariantList& argList, const QString& callbackId)
 {
-    (void)object; (void)method; (void)argList;
-	emit jsInvokeMsg(object, method, argList);
+	emit jsInvokeMsg(object, method, argList, callbackId);
 }
 
 void QCefOSWidget::showDevTool()
