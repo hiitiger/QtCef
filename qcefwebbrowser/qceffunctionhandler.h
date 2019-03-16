@@ -24,7 +24,14 @@ public:
         if (m_resolve.get() && m_context.get() && m_context->Enter())
         {
             CefV8ValueList args;
-            args.push_back(QCefFuncCallback::getCefV8Value(listValue, 0));
+            if (listValue->GetSize() == 0)
+            {
+                args.push_back(CefV8Value::CreateUndefined());
+            }
+            else
+            {
+                args.push_back(QCefFuncCallback::getCefV8Value(listValue, 0));
+            }
             m_resolve->ExecuteFunction(nullptr, args);
             m_context->Exit();
         }

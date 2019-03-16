@@ -24,30 +24,50 @@ namespace Qt
             arguments << genericArgument;
         }
 
-        res = QVariant((QVariant::Type)metaMethod.returnType(), static_cast<void*>(nullptr));
 
-        QGenericReturnArgument returnArgument(
-            res.typeName(),
-            const_cast<void*>(res.constData())
-        );
+        if (metaMethod.returnType() == QMetaType::Void)
+        {
+            ok = metaMethod.invoke(
+                object,
+                Qt::DirectConnection,
+                arguments.value(0),
+                arguments.value(1),
+                arguments.value(2),
+                arguments.value(3),
+                arguments.value(4),
+                arguments.value(5),
+                arguments.value(6),
+                arguments.value(7),
+                arguments.value(8),
+                arguments.value(9)
+            );
+        }
+        else
+        {
 
-        // Perform the call
+            res = QVariant((QVariant::Type)metaMethod.returnType(), static_cast<void*>(nullptr));
 
-        ok = metaMethod.invoke(
-            object,
-            Qt::AutoConnection, // In case the object is in another thread.
-            returnArgument,
-            arguments.value(0),
-            arguments.value(1),
-            arguments.value(2),
-            arguments.value(3),
-            arguments.value(4),
-            arguments.value(5),
-            arguments.value(6),
-            arguments.value(7),
-            arguments.value(8),
-            arguments.value(9)
-        );
+            QGenericReturnArgument returnArgument(
+                res.typeName(),
+                const_cast<void*>(res.constData())
+            );
+
+            ok = metaMethod.invoke(
+                object,
+                Qt::DirectConnection,
+                returnArgument,
+                arguments.value(0),
+                arguments.value(1),
+                arguments.value(2),
+                arguments.value(3),
+                arguments.value(4),
+                arguments.value(5),
+                arguments.value(6),
+                arguments.value(7),
+                arguments.value(8),
+                arguments.value(9)
+            );
+        }
 
         return ok;
     }

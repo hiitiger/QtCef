@@ -77,8 +77,18 @@ void QCefApiAdapter::invokeAsyncResult(const AsyncMetaCallWrapper& wrapper)
     {
         QVariantList arg;
         arg.push_back(wrapper.res);
+        CefRefPtr<CefListValue> cefList;
 
-        CefRefPtr<CefListValue> cefList = JsFunctionWrapper::convertToCefList(arg);
+        if (wrapper.metaMethod.returnType() == QMetaType::Void)
+        {
+            cefList = CefListValue::Create();
+            cefList->SetSize(0);
+        }
+        else
+        {
+            cefList = JsFunctionWrapper::convertToCefList(arg);
+        }
+
         CefRefPtr<CefProcessMessage> processMessage = CefProcessMessage::Create("InvokeAsyncResult");
         processMessage->GetArgumentList()->SetSize(2);
         processMessage->GetArgumentList()->SetString(0, wrapper.callbackId.toStdString());
