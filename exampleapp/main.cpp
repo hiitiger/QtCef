@@ -10,7 +10,6 @@ int main(int argc, char** argv )
     QCefClient cefClient;
     cefClient.initCefClient();
 
-    DemoApi* api = new DemoApi();
 
     QCefOSWidget* w = new QCefOSWidget();
 
@@ -18,7 +17,8 @@ int main(int argc, char** argv )
     w->setUrl("https://baidu.com");
 
     QCefApiAdapter * adapter = new QCefApiAdapter(w, w);
-    adapter->initApi(api, "qcef", "demoapi");
+    QSharedPointer<DemoApi> api(new DemoApi());
+    adapter->initApi(api.data(), "qcef", "demoapi");
 
     app.setQuitOnLastWindowClosed(false);
 

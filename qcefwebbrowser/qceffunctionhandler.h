@@ -3,8 +3,9 @@
 #include "ceffunc.h"
 #include "promise.h"
 
-static QMap<int, QString> g_typeNames;
+void setupTypeNames();
 
+QString getTypeName(int type);
 
 
 class AsyncCefMethodCallback
@@ -59,34 +60,6 @@ Q_DECLARE_METATYPE(JsFunctionWrapper)
 Q_DECLARE_METATYPE(QJsonDocument)
 Q_DECLARE_METATYPE(QFuture<QJsonDocument>)
 
-inline void setupTypeNames()
-{
-    qRegisterMetaType<JsFunctionWrapper>("JsFunctionWrapper");
-    qRegisterMetaType<QJsonDocument>("QJsonDocument");
-    qRegisterMetaType<QFuture<QJsonDocument>>("QFuture<QJsonDocument>");
-
-    g_typeNames.insert(QMetaType::QString, "string");
-    g_typeNames.insert(QMetaType::Int, "int");
-    g_typeNames.insert(QMetaType::QReal, "double");
-    g_typeNames.insert(QMetaType::Float, "float");
-    g_typeNames.insert(QMetaType::Bool, "bool");
-    g_typeNames.insert(QMetaType::QVariantList, "array");
-
-    g_typeNames.insert(QMetaTypeId<QJsonDocument>::qt_metatype_id(), "json");
-    g_typeNames.insert(QMetaTypeId<JsFunctionWrapper>::qt_metatype_id(), "function");
-}
-
-inline QString getTypeName(int type)
-{
-    if (g_typeNames.contains(type))
-    {
-        return g_typeNames.value(type);
-    }
-    else
-    {
-        return "";
-    }
-}
 
 class QCefRenderProcessHandler;
 class QCefFunctionHandler : public CefV8Handler 
@@ -128,7 +101,7 @@ public:
     {
         if (arguments.size() != m_paramTypes.size())
         {
-            retval = CefV8Value::CreateBool(false);
+            exception = QString("wrong param number should be %1").arg(m_paramTypes.size()).toUtf8().constData();
             return true;
         }
 
