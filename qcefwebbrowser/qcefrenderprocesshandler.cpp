@@ -354,7 +354,7 @@ void QCefRenderProcessHandler::injectEvent(CefRefPtr<CefV8Context> context, QStr
                     handlerWrapper.handler = eventHandler;
                     callbacks.insert(eventPath, handlerWrapper);
                 }
-            }        
+            }
         }
     }
 }

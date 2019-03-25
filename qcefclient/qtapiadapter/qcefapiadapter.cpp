@@ -34,6 +34,8 @@ void QCefApiAdapter::initApi(QCefApiObject* apiImpl, QString parentPath, QString
     connect(m_cefWidget, SIGNAL(addEventListnerMsg(const QString&)), SLOT(onAddEventListnerMsg(const QString&)));
 
     parseSignal();
+
+    parseAndInjectApi();
 }
 
 QString QCefApiAdapter::apiPath()
@@ -229,4 +231,105 @@ void QCefApiAdapter::parseSignal()
             m_mappers.append(mapper1);
         }
     }
+}
+
+void QCefApiAdapter::parseAndInjectApi()
+{
+    ObjectMetaInfo metaInfo{};
+    metaInfo.name = m_apiName.toUtf8();
+
+    const QMetaObject* metaObject = m_apiObject->metaObject();
+
+    for (int i = 0; i < metaObject->propertyCount(); i++)
+    {
+        CefRefPtr<CefV8Value> value;
+
+        QMetaProperty metaPorperty = metaObject->property(i);
+        QString name = metaPorperty.name();
+        if (name == "objectName")
+        {
+            continue;
+        }
+        ObjectProperty p{};
+        p.name = name.toUtf8();
+        p.type = metaPorperty.typeName();
+
+        if (metaPorperty.userType() == QMetaType::QString)
+        {
+            nlohmann::json value = metaPorperty.read(m_apiObject).toString().toStdString();
+            p.value = value.dump();
+        }
+        else if (metaPorperty.userType() == QMetaType::Int)
+        {
+            nlohmann::json value = metaPorperty.read(m_apiObject).toInt();
+            p.value = value.dump();
+        }
+        else if (metaPorperty.userType() == QMetaType::Double)
+        {
+            nlohmann::json value = metaPorperty.read(m_apiObject).toDouble();
+            p.value = value.dump();
+        }
+        else if (metaPorperty.userType() == QMetaType::Bool)
+        {
+            nlohmann::json value = metaPorperty.read(m_apiObject).toBool();
+            p.value = value.dump();
+        }
+        else if (metaPorperty.userType() == QMetaTypeId<QJsonDocument>::qt_metatype_id())
+        {
+            QJsonDocument value = metaPorperty.read(m_apiObject).value<QJsonDocument>();
+            p.value = value.toJson().constData();
+        }
+        metaInfo.properties.push_back(p);
+    }
+
+
+    for (int i = 0; i != metaObject->methodCount(); ++i)
+    {
+        QMetaMethod metaMethod = metaObject->method(i);
+        if (metaMethod.methodType() == QMetaMethod::Signal)
+        {
+            QString eventName = QLatin1String(metaMethod.methodSignature());
+            eventName = eventName.left(eventName.indexOf("("));
+            if (eventName == "destroyed")
+            {
+                continue;
+            }
+
+            auto params = metaMethod.parameterTypes();
+
+            ObjectSignal event {};
+            event.sig = metaMethod.methodSignature();
+            event.name = eventName.toStdString();
+            std::transform(params.begin(), params.end(), std::back_inserter(event.paramTypes), [](const QByteArray& type) {
+                return type.constData();
+            });
+
+            metaInfo.events.push_back(event);
+        }
+        else if (metaMethod.methodType() == QMetaMethod::Method)
+        {
+            QString methodName = QLatin1String(metaMethod.methodSignature());
+            methodName = methodName.left(methodName.indexOf("("));
+            auto params = metaMethod.parameterTypes();
+
+            ObjectMethod method{};
+            method.sig = metaMethod.methodSignature();
+            method.name = methodName.toStdString();
+            method.returnType = metaMethod.typeName();
+            std::transform(params.begin(), params.end(), std::back_inserter(method.paramTypes), [](const QByteArray& type) {
+                return type.constData();
+            });
+
+            metaInfo.methods.push_back(method);
+        }
+    }
+
+    std::string metaInfoString = nlohmann::json(metaInfo).dump();
+
+    CefRefPtr<CefProcessMessage> processMessage = CefProcessMessage::Create("InjectApi");
+    processMessage->GetArgumentList()->SetSize(3);
+    processMessage->GetArgumentList()->SetString(0, m_parentPath.toUtf8().constData());
+    processMessage->GetArgumentList()->SetString(1, m_apiName.toUtf8().constData());
+    processMessage->GetArgumentList()->SetString(2, metaInfoString);
+    m_cefWidget->sendProcessMessage(PID_RENDERER, processMessage);
 }

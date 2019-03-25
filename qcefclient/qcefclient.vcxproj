@@ -181,7 +181,6 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_QCefPage.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <ClInclude Include="qtapiadapter\asyncfuture.h" />
-    <ClInclude Include="qtapiadapter\metainfo.hpp" />
     <ClInclude Include="qtcef\cefeventtranslator.h" />
     <ClInclude Include="qtcef\ceftypewrapper.h" />
     <CustomBuild Include="qtcef\client_app.h">

@@ -174,8 +174,5 @@
     <ClInclude Include="qtapiadapter\asyncfuture.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="qtapiadapter\metainfo.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

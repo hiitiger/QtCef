@@ -29,6 +29,8 @@ private slots:
 private:
     void parseSignal();
 
+    void parseAndInjectApi();
+
 protected:
     QPointer<QCefOSWidget> m_cefWidget;
     QString m_appName;

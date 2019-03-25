@@ -5,7 +5,7 @@ struct ObjectProperty
 {
     std::string name;
     std::string value;
-    std::uint32_t type;
+    std::string type;
 };
 
 JSON_AUTO(ObjectProperty, name, value, type);
@@ -14,7 +14,7 @@ struct ObjectSignal
 {
     std::string sig;
     std::string name;
-    std::vector<std::uint32_t> paramTypes;
+    std::vector<std::string> paramTypes;
 };
 
 JSON_AUTO(ObjectSignal, sig, name, paramTypes);
@@ -23,8 +23,8 @@ struct ObjectMethod
 {
     std::string sig;
     std::string name;
-    std::vector<std::uint32_t> paramTypes;
-    std::uint32_t returnType;
+    std::vector<std::string> paramTypes;
+    std::string returnType;
 };
 
 JSON_AUTO(ObjectMethod, sig, name, paramTypes, returnType);
