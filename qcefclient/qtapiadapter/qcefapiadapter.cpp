@@ -4,6 +4,7 @@
 #include "qthack/genericmetacall.h"
 #include "qthack/genericsignalmap.h"
 #include "asyncfuture.h"
+#include "metainfo.hpp"
 
 
 Q_DECLARE_METATYPE(QJsonDocument)

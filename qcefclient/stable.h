@@ -8,6 +8,8 @@
 
 #include <memory>
 
+#include "json_auto.h"
+
 #include "qcefglobal.h"
 
 #include "cefheader.h"
