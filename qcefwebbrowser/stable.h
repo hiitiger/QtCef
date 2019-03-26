@@ -14,3 +14,5 @@
 #include "qceffunctionhandler.h"
 #include "qcefeventfunctionhandler.h"
 
+#include "json_auto.h"
+#include "metainfo.hpp"

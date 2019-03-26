@@ -45,6 +45,12 @@ CefRefPtr<MyV8Accessor>& MyV8AccessorUserData::accessor()
 
 //////////////////////////////////////////////////////////////////////////
 
+struct InjectApiMessage
+{
+    QString parentPath;
+    QString name;
+    ObjectMetaInfo metaInfo;
+};
 
 QCefRenderProcessHandler::QCefRenderProcessHandler()
     :m_funciontId(0)
@@ -239,121 +245,112 @@ void QCefRenderProcessHandler::releaeFrameHandler(CefRefPtr<CefFrame> frame)
     m_frameFuncionCallbacks.remove(frameId);
 }
 
-void QCefRenderProcessHandler::injectApi(CefRefPtr<CefV8Context> context, QString path, QObject* apiObject)
+void QCefRenderProcessHandler::injectApi(CefRefPtr<CefV8Context> context, QString parentPath, QString name, ObjectMetaInfo metaInfo)
 {
     context->Enter();
 
+    auto path = parentPath.append(".").append(name);
     CefRefPtr<CefV8Value> object = getOrCreateObject(context, path);
 
-    injectProperty(context, path, apiObject);
-    injectMethod(context, path, apiObject);
-    injectEvent(context, path, apiObject);
+    injectProperty(context, path, metaInfo);
+    injectMethod(context, path, metaInfo);
+    injectEvent(context, path, metaInfo);
+
+    object->SetValue("metaInfo", CefV8Value::CreateString(nlohmann::json(metaInfo).dump()), V8_PROPERTY_ATTRIBUTE_NONE);
 
     context->Exit();
 }
 
-void QCefRenderProcessHandler::injectProperty(CefRefPtr<CefV8Context> context, QString path, QObject* apiObject)
+
+void QCefRenderProcessHandler::injectProperty(CefRefPtr<CefV8Context> context, QString path, const ObjectMetaInfo& metaInfo)
 {
     CefRefPtr<CefV8Value> object = getOrCreateObject(context, path);
 
-    const QMetaObject* metaObject = apiObject->metaObject();
-  
-    for (int i = 0; i < metaObject->propertyCount(); i++)
+    for (const auto& property: metaInfo.properties)
     {
         CefRefPtr<CefV8Value> value;
 
-        QMetaProperty metaPorperty = metaObject->property(i);
-        QString name = metaPorperty.name();
+        auto name = property.name;
 
-        if (metaPorperty.userType() == QMetaType::QString)
+        if (property.type == QMetaType::typeName(QMetaType::QString))
         {
-            value = CefV8Value::CreateString(metaPorperty.read(apiObject).toString().toStdWString());
+            value = CefV8Value::CreateString(property.value);
         }
-        else if (metaPorperty.userType() == QMetaType::Int)
+        else if (property.type == QMetaType::typeName(QMetaType::Int))
         {
-            value = CefV8Value::CreateInt(metaPorperty.read(apiObject).toInt());
+            value = CefV8Value::CreateInt(QString::fromStdString(property.value).toInt());
         }
-        else if (metaPorperty.userType() == QMetaType::Double)
+        else if (property.type == QMetaType::typeName(QMetaType::Double))
         {
-            value = CefV8Value::CreateDouble(metaPorperty.read(apiObject).toDouble());
+            value = CefV8Value::CreateDouble(QString::fromStdString(property.value).toDouble());
         }
-        else if (metaPorperty.userType() == QMetaType::Bool)
+        else if (property.type == QMetaType::typeName(QMetaType::Bool))
         {
-            value = CefV8Value::CreateBool(metaPorperty.read(apiObject).toBool());
+            nlohmann::json json_value = property.value;
+            value = CefV8Value::CreateBool(json_value.get<bool>());
         }
 
-        object->SetValue(name.toStdWString(), value, V8_PROPERTY_ATTRIBUTE_NONE);
+        object->SetValue(name, value, V8_PROPERTY_ATTRIBUTE_NONE);
     }
 }
 
-void QCefRenderProcessHandler::injectMethod(CefRefPtr<CefV8Context> context, QString path, QObject* apiObject)
+void QCefRenderProcessHandler::injectMethod(CefRefPtr<CefV8Context> context, QString path, const ObjectMetaInfo& metaInfo)
 {
     CefRefPtr<CefV8Value> object = getOrCreateObject(context, path);
 
-    const QMetaObject* metaObject = apiObject->metaObject();
-  
-    for (int i = 0; i != metaObject->methodCount(); ++i)
+    for (const auto& metaMethod : metaInfo.methods)
     {
-        QMetaMethod metaMethod = metaObject->method(i);
-        if (metaMethod.methodType() == QMetaMethod::Method)
-        {
-            QString methodName = QLatin1String(metaMethod.methodSignature());
-            methodName = methodName.left(methodName.indexOf("("));
+        QString methodName = QString::fromStdString(metaMethod.sig);
+        methodName = methodName.left(methodName.indexOf("("));
 
-            CefRefPtr<QCefFunctionHandler> handler = new QCefFunctionHandler(this, context->GetFrame());
-            handler->setObjectPath(path);
-            handler->setParamTypes(metaMethod.parameterTypes());
+        CefRefPtr<QCefFunctionHandler> handler = new QCefFunctionHandler(this, context->GetFrame());
+        handler->setObjectPath(path);
+        handler->setParamTypes(metaMethod.paramTypes);
 
-            CefRefPtr<CefV8Value> func = CefV8Value::CreateFunction(methodName.toUtf8().constData(), handler);
-            object->SetValue(methodName.toUtf8().constData(), func, V8_PROPERTY_ATTRIBUTE_NONE);
-        }
+        CefRefPtr<CefV8Value> func = CefV8Value::CreateFunction(methodName.toUtf8().constData(), handler);
+        object->SetValue(methodName.toUtf8().constData(), func, V8_PROPERTY_ATTRIBUTE_NONE);
     }
 }
 
-void QCefRenderProcessHandler::injectEvent(CefRefPtr<CefV8Context> context, QString path, QObject* apiObject)
+void QCefRenderProcessHandler::injectEvent(CefRefPtr<CefV8Context> context, QString path, const ObjectMetaInfo& metaInfo)
 {
-    const QMetaObject* metaObject = apiObject->metaObject();
-    QString injectName = QString::fromUtf8(metaObject->className()).toLower();
+    QString injectName = QString::fromStdString(metaInfo.name);
 
-    for (int i = 0; i != metaObject->methodCount(); ++i)
+    for (const auto& event : metaInfo.events)
     {
-        QMetaMethod method = metaObject->method(i);
-        if (method.methodType() == QMetaMethod::Signal)
+        QString eventName = QString::fromStdString(event.sig);
+        eventName = eventName.left(eventName.indexOf("("));
+        if (eventName == "destroyed")
         {
-            QString eventName = QLatin1String(method.methodSignature());
-            eventName = eventName.left(eventName.indexOf("("));
-            if (eventName == "destroyed")
+            continue;
+        }
+
+        QString eventPath = eventName;
+        eventPath.prepend(".");
+        eventPath.prepend(path);
+
+        CefRefPtr<CefV8Value> eventObject = getOrCreateObject(context, eventPath);
+
+        CefRefPtr<QCefEventFunctionHandler> eventHandler = new QCefEventFunctionHandler();
+
+        eventHandler->setEventPath(eventPath);
+
+        CefRefPtr<CefV8Value> funcAdd = CefV8Value::CreateFunction("addListener", eventHandler);
+        eventObject->SetValue("addListener", funcAdd, V8_PROPERTY_ATTRIBUTE_NONE);
+
+        CefRefPtr<CefV8Value> funcRemove = CefV8Value::CreateFunction("removeListener", eventHandler);
+        eventObject->SetValue("removeListener", funcRemove, V8_PROPERTY_ATTRIBUTE_NONE);
+
+        int64_t frameId = context->GetFrame()->GetIdentifier();
+
+        if (m_frameEventCallbackHandlers.contains(frameId))
+        {
+            EventCallbackMap& callbacks = m_frameEventCallbackHandlers[frameId];
+            if (!callbacks.contains(eventPath))
             {
-                continue;
-            }
-
-            QString eventPath = eventName;
-            eventPath.prepend(".");
-            eventPath.prepend(path);
-
-            CefRefPtr<CefV8Value> eventObject = getOrCreateObject(context, eventPath);
-
-            CefRefPtr<QCefEventFunctionHandler> eventHandler = new QCefEventFunctionHandler();
-
-            eventHandler->setEventPath(eventPath);
-
-            CefRefPtr<CefV8Value> funcAdd = CefV8Value::CreateFunction("addListener", eventHandler);
-            eventObject->SetValue("addListener", funcAdd, V8_PROPERTY_ATTRIBUTE_NONE);
-
-            CefRefPtr<CefV8Value> funcRemove = CefV8Value::CreateFunction("removeListener", eventHandler);
-            eventObject->SetValue("removeListener", funcRemove, V8_PROPERTY_ATTRIBUTE_NONE);
-
-            int64_t frameId = context->GetFrame()->GetIdentifier();
-
-            if (m_frameEventCallbackHandlers.contains(frameId))
-            {
-                EventCallbackMap& callbacks = m_frameEventCallbackHandlers[frameId];
-                if (!callbacks.contains(eventPath))
-                {
-                    QCefEventFunctionHandlerWrapper handlerWrapper;
-                    handlerWrapper.handler = eventHandler;
-                    callbacks.insert(eventPath, handlerWrapper);
-                }
+                QCefEventFunctionHandlerWrapper handlerWrapper;
+                handlerWrapper.handler = eventHandler;
+                callbacks.insert(eventPath, handlerWrapper);
             }
         }
     }
@@ -433,17 +430,21 @@ void QCefRenderProcessHandler::OnContextCreated(CefRefPtr<CefBrowser> browser, C
     QString url = QString::fromStdWString(frame->GetURL().ToWString());
     QString host = QUrl(url).host();
 
-    //inject api
-    {
-		DemoApi api;
-		injectApi(context, "qcef.demoapi", &api);
+    m_contextReady = true;
 
+    for (auto& message: m_apiMessages)
+    {
+        injectApi(context, message.parentPath, message.name, message.metaInfo);
     }
+
+    m_apiMessages.clear();
 }
 
 void QCefRenderProcessHandler::OnContextReleased(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefV8Context> context)
 {
     releaeFrameHandler(frame);
+
+    m_contextReady = false;
 }
 
 bool QCefRenderProcessHandler::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefProcessId source_process, CefRefPtr<CefProcessMessage> message)
@@ -468,6 +469,25 @@ bool QCefRenderProcessHandler::OnProcessMessageReceived(CefRefPtr<CefBrowser> br
     else if (message->GetName() == "InvokeAsyncResult")
     {
         invokeAsyncMethodCallback(browser, message);
+    }
+    else if (message->GetName() == "InjectApi")
+    {
+        auto argumensts = message->GetArgumentList();
+        auto parentPath = QString::fromStdWString(argumensts->GetString(0).ToWString());
+        auto name = QString::fromStdWString(argumensts->GetString(1).ToWString());
+        auto metaInfoString = argumensts->GetString(2).ToString();
+        ObjectMetaInfo metaInfo = nlohmann::json::parse(argumensts->GetString(2).ToString());
+
+        if (!m_contextReady)
+        {
+            InjectApiMessage m = { parentPath, name, metaInfo };
+            m_apiMessages.push_back(m);
+            return true;
+        }
+        else
+        {
+            injectApi(CefV8Context::GetCurrentContext(), parentPath, name, metaInfo);
+        }
     }
     return true;
 }

@@ -157,7 +157,7 @@ void QCefOSWidget::sendProcessMessage(CefProcessId pid, CefRefPtr<CefProcessMess
         CefProcessMessageWrapper message;
         message.pid = pid;
         message.processMessage = processMessage;
-        m_pendingProcessMessages.append(m_pendingProcessMessages);
+        m_pendingProcessMessages.append(message);
     }
 }
 

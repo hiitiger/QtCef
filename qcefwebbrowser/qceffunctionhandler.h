@@ -82,13 +82,13 @@ public:
         m_objectPath = objectPath;
     }
 
-    void setParamTypes(const QList<QByteArray>& paramTypes)
+    void setParamTypes(const std::vector<std::string>& paramTypes)
     {
         m_paramTypes.clear();
 
         for (int index = 0; index != paramTypes.size(); ++index)
         {
-            int type = QMetaType::type(paramTypes[index].constData());
+            int type = QMetaType::type(paramTypes[index].c_str());
             m_paramTypes.append(type);
         }
     }

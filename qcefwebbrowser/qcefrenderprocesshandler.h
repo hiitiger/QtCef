@@ -52,6 +52,8 @@ private:
     CefRefPtr<MyV8Accessor> m_accessor;
 };
 
+struct ObjectMetaInfo;
+struct InjectApiMessage;
 
 class QCefEventFunctionHandlerWrapper;
 class QCefFuncCallback;
@@ -76,13 +78,13 @@ public:
     void prepareFrameHandler(CefRefPtr<CefFrame> frame);
     void releaeFrameHandler(CefRefPtr<CefFrame> frame);
 
-    void injectApi(CefRefPtr<CefV8Context> context, QString path, QObject* apiObject);
+    void injectApi(CefRefPtr<CefV8Context> context, QString parentPath, QString name, ObjectMetaInfo metaInfo);
 
-    void injectProperty(CefRefPtr<CefV8Context> context, QString path, QObject* apiObject);
+    void injectProperty(CefRefPtr<CefV8Context> context, QString path, const ObjectMetaInfo& apiObject);
 
-    void injectMethod(CefRefPtr<CefV8Context> context, QString path, QObject* apiObject);
+    void injectMethod(CefRefPtr<CefV8Context> context, QString path, const ObjectMetaInfo& apiObject);
 
-    void injectEvent(CefRefPtr<CefV8Context> context, QString path, QObject* apiObject);
+    void injectEvent(CefRefPtr<CefV8Context> context, QString path, const ObjectMetaInfo& apiObject);
 
     CefRefPtr<CefV8Value> getOrCreateObject(CefRefPtr<CefV8Context> context, QString path);
 
@@ -108,6 +110,7 @@ public:
 private:
     IMPLEMENT_REFCOUNTING(QCefRenderProcessHandler);
     long m_funciontId = 0;
+    bool m_contextReady = false;
 
     typedef QMap<QString, QCefEventFunctionHandlerWrapper> EventCallbackMap;
 
@@ -122,4 +125,6 @@ private:
     typedef QMap<int, std::shared_ptr<AsyncCefMethodCallback>> AsyncMethodCallbackMap;
 
     QMap<int64_t, AsyncMethodCallbackMap> m_asyncCefCallbacks;
+
+    std::vector<InjectApiMessage> m_apiMessages;
 };
