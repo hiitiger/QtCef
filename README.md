@@ -31,17 +31,11 @@ With Qt's MOC based reflection, we can utilize it to inject C++ api into Cef web
     QCefApiAdapter* toolApiAdapter = new QCefApiAdapter(webWidget, parent);
     toolApiAdapter->initApi(toolApi, adapter->apiPath(), "tool");
 
-    //renderer process
-     MyAppApi api;
-     injectApi(context, "myapp.app", &api);
-
-     MyToolApi toolApi;
-     injectApi(context, "myapp.app.tool", &toolApi);
-
-     //webpage
-     a = {"a": 123};
-     myapp.app.apiFunc(a, data => console.log(data));
-     myapp.app.apiAsyncFunc(a).then( data => console.log(data));
-     myapp.app.someEvent.addListener( data => console.log(data));
+    //we are good to go
+    //webpage
+    a = {"a": 123};
+    myapp.app.apiFunc(a, data => console.log(data));
+    myapp.app.apiAsyncFunc(a).then( data => console.log(data));
+    myapp.app.someEvent.addListener( data => console.log(data));
 ```
 
